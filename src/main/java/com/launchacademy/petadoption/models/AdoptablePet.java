@@ -1,7 +1,9 @@
 package com.launchacademy.petadoption.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,9 +32,9 @@ public class AdoptablePet {
     private Boolean vaccinationStatus;
     private String adoptionStory;
     private String adoptionStatus;
-    //private Integer typeId ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
+    @JsonIgnoreProperties("adoptablePetList")
     private PetType petType;
 }

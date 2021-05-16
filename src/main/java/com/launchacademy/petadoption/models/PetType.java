@@ -1,7 +1,9 @@
 package com.launchacademy.petadoption.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class PetType {
   private String img_url;
   private String description;
 
-  @OneToMany(mappedBy = "petType")
+  @OneToMany(mappedBy = "petType", cascade = CascadeType.ALL)
+  @JsonIgnoreProperties("petType")
   private List<AdoptablePet> adoptablePetList = new ArrayList<>();
 }

@@ -8,8 +8,10 @@ body {
 }
 
 .adoption_app {
-  max-width: 40%;
-  margin: auto;
+  position: absolute;
+  max-width: 50%;
+  margin: 120px auto;
+  left: 40%;
   border-radius: 2%;
   padding: 15px;
 }

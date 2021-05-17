@@ -1,7 +1,9 @@
 package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.dtos.PetTypeDto;
+import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.PetType;
+import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
 import com.launchacademy.petadoption.repositories.PetTypeRepository;
 import com.launchacademy.petadoption.services.PetTypeService;
 import java.util.Optional;
@@ -25,6 +27,7 @@ public class PetRestApiController {
 
   private PetTypeService petTypeService;
   private PetTypeRepository petTypeRepository;
+  @Autowired private AdoptablePetRepository adoptPetRepo;
 
   @Autowired
   public PetRestApiController(PetTypeService petTypeService,
@@ -54,6 +57,11 @@ public class PetRestApiController {
 //    return petTypeService.findByType(type).get();
 //  }
 
+  @GetMapping("/{type}/{id}")
+  public AdoptablePet getPetIdOfPetType(@PathVariable String type, @PathVariable Integer id) {
+    PetType petType = petTypeRepository.findPetTypeBy(type);
+    return adoptPetRepo.findById(id).orElseThrow(() -> new PetTypeNotFoundException());
+  }
 
   @NoArgsConstructor
   private class PetTypeNotFoundException extends RuntimeException {};

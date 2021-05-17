@@ -4,13 +4,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping(value = {"/pets"})
+    @GetMapping(value = {"/pets", "/pets/{type}", "/pets/{type}/{id}", "/surrender/new"})
     public String forward() {
         return "forward:/";
     }
 
-    @GetMapping(value = {"/pets/{type}"})
-    public String forwardToType() {
-        return "forward:/pets/{type}";
-    }
+//    @GetMapping(value = {"/pets/{type}"})
+//    public String forwardToType() {
+//        return "forward:/pets";
+//    }
+//
+//    @GetMapping(value = {"/pets/{type}/{id}"})
+//    public String forwardToTypeId() {
+//        return "forward:/pets";
+//    }
+
+//    @GetMapping(value = {"/surrender/new"})
+//    public String forwardToForm() {
+//        return "forward:/pets";
+//    }
 }

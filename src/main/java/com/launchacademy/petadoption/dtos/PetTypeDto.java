@@ -18,21 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class PetTypeDto {
   private Integer id;
   private String type;
-  private String img_url;
+  private String imgUrl;
   private String description;
-  private List<AdoptablePetDto> adoptablePetDtoList = new ArrayList<>();
+  private List<AdoptablePetDto> adoptablePetsDto = new ArrayList<>();
 
   public static PetTypeDto fromPetType(PetType petType) {
     PetTypeDto petTypeDto = new PetTypeDto();
     petTypeDto.setType(petType.getType());
-    petTypeDto.setImg_url(petType.getImg_url());
+    petTypeDto.setImgUrl(petType.getImgUrl());
     petTypeDto.setDescription(petType.getDescription());
     /* petTypeDto.setAdoptablePetDtoList(fromAdoptablePetList(petType.getAdoptablePetList())); */
     List<AdoptablePetDto> list = new ArrayList<>();
-    for (AdoptablePet x : petType.getAdoptablePetList()) {
+    for (AdoptablePet x : petType.getAdoptablePets()) {
       AdoptablePetDto adoptablePetDto = fromAdoptablePet(x);
       list.add(adoptablePetDto);
-      petTypeDto.adoptablePetDtoList.add(adoptablePetDto);
+      petTypeDto.adoptablePetsDto.add(adoptablePetDto);
     }
     return petTypeDto;
   }

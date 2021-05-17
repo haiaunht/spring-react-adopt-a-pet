@@ -18,8 +18,8 @@ body {
 
 .adoption_app {
   position: absolute;
-  max-width: 50%;
-  margin: 20px auto 30px;
+  max-width: 70%;
+  margin: 120px auto 30px;
   border-radius: 2%;
   padding: 25px;
 }
@@ -67,7 +67,7 @@ form {
 
 .animal-show {
   max-width: 40%;
-  margin: 1% auto 1% auto;
+  margin: 120px auto 1% auto;
   background-color: #e0e2e9;
   border-radius: 2%;
   padding: 0.25rem 1rem;

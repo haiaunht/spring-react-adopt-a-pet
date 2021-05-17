@@ -18,7 +18,8 @@ const AnimalShow = props => {
         throw error
       }
       const responseBody = await response.json()
-      setAnimal(responseBody.pet)
+      // setAnimal(responseBody.pet)
+      setAnimal(responseBody)
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`)
     }

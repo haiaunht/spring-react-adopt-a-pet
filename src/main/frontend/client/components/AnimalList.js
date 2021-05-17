@@ -4,12 +4,11 @@ import AnimalTile from "./AnimalTile.js"
 const AnimalList = props => {
   // const [animalType, setAnimalType] = useState({ adoptablePets: [] })
   const [animalType, setAnimalType] = useState([])
+  const [type, setType] = useState("")
 
   const fetchAnimalType = async () => {
     try {
       const type = props.match.params.type
-      console.log(type)
-      // const response = await fetch(`/api/v1/pets/${type}`)
       const response = await fetch(`/api/v1/pets/${type}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
@@ -17,11 +16,8 @@ const AnimalList = props => {
         throw error
       }
       const fetchedData = await response.json()
-      console.log(fetchedData.type)
-      console.log(fetchedData.adoptablePetList)
-      //console.log(fetchedData.adoptablePetList)
-      setAnimalType(fetchedData.adoptablePetList)
-      console.log(animalType.type)
+      setAnimalType(fetchedData.adoptablePets)
+      setType(fetchedData.type)
     } catch (error) {
       console.error(error)
     }
@@ -41,7 +37,7 @@ const AnimalList = props => {
         age={animal.age}
         vaccinationStatus={animal.vaccinationStatus}
         imgUrl={animal.imgUrl}
-        type={animalType.type}
+        type={type}
       />
     )
   })

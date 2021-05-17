@@ -28,10 +28,10 @@ public class PetType {
   @Column(name="id", nullable=false, unique=true)
   private Integer id;
   private String type;
-  private String img_url;
+  private String imgUrl;
   private String description;
 
   @OneToMany(mappedBy = "petType", cascade = CascadeType.ALL)
   @JsonIgnoreProperties("petType")
-  private List<AdoptablePet> adoptablePetList = new ArrayList<>();
+  private List<AdoptablePet> adoptablePets = new ArrayList<>();
 }

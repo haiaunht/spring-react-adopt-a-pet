@@ -12,7 +12,8 @@ const NavBar = () => {
                 <Link to="/pets">Home</Link>
               </li>
               <li>
-                <Link to="/adoptions/new">Surrender Your Pet</Link>
+                {/*<Link to="/adoptions/new">Surrender Your Pet</Link>*/}
+                <Link to="/surrender/new">Surrender Your Pet</Link>
               </li>
             </ul>
           </div>

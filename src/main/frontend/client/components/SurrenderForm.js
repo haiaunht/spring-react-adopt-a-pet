@@ -15,6 +15,19 @@ const SurrenderForm = props => {
     petImageUrl: "",
     vaccinationStatus: ""
   })
+
+//   CREATE TABLE pet_surrender_applications (
+//       id SERIAL PRIMARY KEY,
+//       name VARCHAR (255) NOT NULL,
+//       phone_number VARCHAR (255) NOT NULL,
+//       email VARCHAR (255) NOT NULL,
+//       pet_name VARCHAR (255) NOT NULL,
+//       pet_age INTEGER,
+//       pet_image_url VARCHAR (500) NOT NULL,
+//       vaccination_status BOOLEAN,
+//       application_status VARCHAR (255) NOT NULL, [pending, approved]
+//       pet_type_id INTEGER REFERENCES pet_types(id)
+// );
   const [errors, setErrors] = useState([])
   const [redirect, setRedirect] = useState(false)
 
@@ -190,8 +203,8 @@ const SurrenderForm = props => {
                     onChange={handleInput}
                   >
                     <option value="">Please Select</option>
-                    <option value="Leeches">Leeches</option>
-                    <option value="Red Garras">Red Garras</option>
+                    <option value="1">Puppies</option>
+                    <option value="2">Kitties</option>
                   </select>
                 </label>
               </div>

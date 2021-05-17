@@ -2,23 +2,26 @@ import React, { useState, useEffect } from "react"
 import AnimalTile from "./AnimalTile.js"
 
 const AnimalList = props => {
-  const [animalType, setAnimalType] = useState({ adoptablePets: [] })
+  // const [animalType, setAnimalType] = useState({ adoptablePets: [] })
+  const [animalType, setAnimalType] = useState([])
 
   const fetchAnimalType = async () => {
     try {
       const type = props.match.params.type
       console.log(type)
       // const response = await fetch(`/api/v1/pets/${type}`)
-      const response = await fetch(`/api/v1/pet-types/${type}`)
+      const response = await fetch(`/api/v1/pets/${type}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const fetchedData = await response.json()
-      console.log(fetchedData.adoptablePetDtoList)
-      //setAnimalType(fetchedData.pet)
-      setAnimalType(fetchedData.adoptablePetDtoList)
+      console.log(fetchedData.type)
+      console.log(fetchedData.adoptablePetList)
+      //console.log(fetchedData.adoptablePetList)
+      setAnimalType(fetchedData.adoptablePetList)
+      console.log(animalType.type)
     } catch (error) {
       console.error(error)
     }
@@ -26,9 +29,9 @@ const AnimalList = props => {
 
   useEffect(() => {
     fetchAnimalType()
-  }, [props])
+  }, [])
 
-  //const petList = animalType.adoptablePets.map(animal => {
+  // const petList = animalType.adoptablePets.map(animal => {
   const petList = animalType.map(animal => {
     return (
       <AnimalTile

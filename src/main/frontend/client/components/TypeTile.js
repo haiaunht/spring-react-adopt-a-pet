@@ -11,13 +11,13 @@ const TypeTile = props => {
           <div className="card-devider">
             <h1><Link to={`/pets/${props.type}`}>{props.type}</Link></h1>
           </div>
-          <img className="images thumbnail" src={props.imgUrl} />
-          {/*<div>*/}
-          {/*  <Link to={`/pets/${props.type}`}>*/}
-          {/*    {" "}*/}
-          {/*    <img className="images thumbnail" src={props.imgUrl} />*/}
-          {/*  </Link>*/}
-          {/*</div>*/}
+          {/*<img className="images thumbnail" src={props.imgUrl} />*/}
+          <div>
+            <Link to={`/pets/${props.type}`}>
+              {" "}
+              <img className="images thumbnail" src={props.imgUrl} />
+            </Link>
+          </div>
           <div className="card-section">
             {props.description}
           </div>

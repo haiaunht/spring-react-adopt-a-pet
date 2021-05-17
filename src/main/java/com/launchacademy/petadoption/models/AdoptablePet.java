@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,11 +28,29 @@ public class AdoptablePet {
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="adoptable_pet_generator")
     @Column(name="id", nullable=false, unique=true)
     private Integer id;
+
+    @NotBlank
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @NotBlank
+    @Column(name = "img_url", nullable = false)
     private String imgUrl;
+
+    @NotNull
+    @Column(name = "age", nullable = false)
     private Integer age;
+
+    @NotNull
+    @Column(name = "vaccination_status", nullable = false)
     private Boolean vaccinationStatus;
+
+    @NotBlank
+    @Column(name = "adoption_story", nullable = false)
     private String adoptionStory;
+
+    @NotBlank
+    @Column(name = "adoption_status", nullable = false)
     private String adoptionStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -1,33 +1,24 @@
 import _ from "lodash"
 import React, { useState } from "react"
 import { Redirect } from "react-router-dom"
+import SuccessfulSubmission from "./SuccessfulSubmission";
 
 import Error from "./Error"
 
 const SurrenderForm = props => {
+  const [submitSuccessful, setSubmitSuccessful] = useState(false)
   const [newSurrender, setNewSurrender] = useState({
     name: "",
     phoneNumber: "",
     email: "",
     petName: "",
     petAge: "",
-    petType: "",
+    petTypeId: "",
     petImageUrl: "",
-    vaccinationStatus: ""
+    vaccinationStatus: "",
+    applicationStatus: "pending"
   })
 
-//   CREATE TABLE pet_surrender_applications (
-//       id SERIAL PRIMARY KEY,
-//       name VARCHAR (255) NOT NULL,
-//       phone_number VARCHAR (255) NOT NULL,
-//       email VARCHAR (255) NOT NULL,
-//       pet_name VARCHAR (255) NOT NULL,
-//       pet_age INTEGER,
-//       pet_image_url VARCHAR (500) NOT NULL,
-//       vaccination_status BOOLEAN,
-//       application_status VARCHAR (255) NOT NULL, [pending, approved]
-//       pet_type_id INTEGER REFERENCES pet_types(id)
-// );
   const [errors, setErrors] = useState([])
   const [redirect, setRedirect] = useState(false)
 
@@ -53,6 +44,7 @@ const SurrenderForm = props => {
         const data = await response.json()
         if (data) {
           setRedirect(true)
+          setSubmitSuccessful(true)
         }
       }
     } catch (error) {
@@ -74,10 +66,11 @@ const SurrenderForm = props => {
       "email",
       "petName",
       "petAge",
-      "petType",
+      "petTypeId",
       "petImageUrl",
       "vaccinationStatus"
     ]
+    console.log(newSurrender)
     requiredFields.forEach(field => {
       if (newSurrender[field].trim() === "") {
         submissionErrors = { ...submissionErrors, [field]: `is required` }
@@ -90,147 +83,163 @@ const SurrenderForm = props => {
   const handleSubmit = event => {
     event.preventDefault()
     if (validateInput()) {
+      console.log(newSurrender)
       addNewSurrender()
     }
   }
 
-  if (redirect) {
-    return <Redirect to="/adoptions" />
-  }
+  if (submitSuccessful) {
+    // return <Redirect to="/adoptions" />
+    // return <Redirect to="/surrender" />
+    return (
+        <SuccessfulSubmission submitSuccessful={submitSuccessful} userName={newSurrender.name} />
+    )
+  } else {
 
-  return (
-    <div>
-      <h2>Surrender Your Pet:</h2>
-      <form onSubmit={handleSubmit} className="adoption_app">
-        <div className="grid-contrainer">
-          <div className="grid-x grid-padding-x">
-            <div className="cell">
-              <Error errors={errors} />
+    return (
+        <div>
+          <h2>Surrender Your Pet:</h2>
+          <form onSubmit={handleSubmit} className="adoption_app">
+            <div className="grid-contrainer">
+              <div className="grid-x grid-padding-x">
+                <div className="cell">
+                  <Error errors={errors}/>
+                </div>
+
+                <div className="row">
+                  <div className="medium-6 columns">
+                    <label htmlFor="name">
+                      Your Name:
+                      <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          onChange={handleInput}
+                          value={newSurrender.name}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="medium-6 columns">
+                    <label htmlFor="phoneNumber">
+                      Phone:
+                      <input
+                          id="phoneNumber"
+                          type="text"
+                          name="phoneNumber"
+                          onChange={handleInput}
+                          value={newSurrender.phoneNumber}
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="medium-6 columns">
+                    <label htmlFor="email">
+                      Email:
+                      <input
+                          id="email"
+                          type="text"
+                          name="email"
+                          onChange={handleInput}
+                          value={newSurrender.email}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="medium-6 columns">
+                    <label htmlFor="petName">
+                      Pets Name:
+                      <input
+                          id="petName"
+                          type="text"
+                          name="petName"
+                          onChange={handleInput}
+                          value={newSurrender.petName}
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="medium-6 columns">
+                    <label htmlFor="petImageUrl">
+                      Picture of your pet:
+                      <input
+                          id="petImageUrl"
+                          type="text"
+                          name="petImageUrl"
+                          onChange={handleInput}
+                          value={newSurrender.petImageUrl}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="medium-6 columns">
+                    <label htmlFor="petAge">
+                      Pets Age (in months):
+                      <input
+                          id="petAge"
+                          type="text"
+                          name="petAge"
+                          onChange={handleInput}
+                          value={newSurrender.petAge}
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="medium-6 columns">
+                    <label htmlFor="petTypeId">
+                      Pet Type:
+                      <select
+                          id="petTypeId"
+                          name="petTypeId"
+                          value={newSurrender.petType}
+                          onChange={handleInput}
+                      >
+                        <option value="">Please Select</option>
+                        <option value="1">Puppies</option>
+                        <option value="2">Kitties</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div className="medium-6 columns">
+                    <label htmlFor="vaccinationStatus">
+                      Vaccinated?
+                      <select
+                          id="vaccinationStatus"
+                          name="vaccinationStatus"
+                          value={newSurrender.vaccinationStatus}
+                          onChange={handleInput}
+                      >
+                        <option value="">Please Select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+
+                <label htmlFor="applicationStatus">
+                  <input
+                      id="applicationStatus"
+                      type="text"
+                      name="applicationStatus"
+                      value="pending" hidden
+                  />
+                </label>
+
+                <input className="button round" type="submit" value="Submit"/>
+              </div>
             </div>
-
-            <div className="row">
-              <div className="medium-6 columns">
-                <label htmlFor="name">
-                  Your Name:
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    onChange={handleInput}
-                    value={newSurrender.name}
-                  />
-                </label>
-              </div>
-
-              <div className="medium-6 columns">
-                <label htmlFor="phoneNumber">
-                  Phone:
-                  <input
-                    id="phoneNumber"
-                    type="text"
-                    name="phoneNumber"
-                    onChange={handleInput}
-                    value={newSurrender.phoneNumber}
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="medium-6 columns">
-                <label htmlFor="email">
-                  Email:
-                  <input
-                    id="email"
-                    type="text"
-                    name="email"
-                    onChange={handleInput}
-                    value={newSurrender.email}
-                  />
-                </label>
-              </div>
-
-              <div className="medium-6 columns">
-                <label htmlFor="petName">
-                  Pets Name:
-                  <input
-                    id="petName"
-                    type="text"
-                    name="petName"
-                    onChange={handleInput}
-                    value={newSurrender.petName}
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="medium-6 columns">
-                <label htmlFor="petImageUrl">
-                  Picture of your pet:
-                  <input
-                    id="petImageUrl"
-                    type="text"
-                    name="petImageUrl"
-                    onChange={handleInput}
-                    value={newSurrender.petImageUrl}
-                  />
-                </label>
-              </div>
-
-              <div className="medium-6 columns">
-                <label htmlFor="petAge">
-                  Pets Age (in months):
-                  <input
-                    id="petAge"
-                    type="text"
-                    name="petAge"
-                    onChange={handleInput}
-                    value={newSurrender.petAge}
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="medium-6 columns">
-                <label htmlFor="petType">
-                  Pet Type:
-                  <select
-                    id="petType"
-                    name="petType"
-                    value={newSurrender.petType}
-                    onChange={handleInput}
-                  >
-                    <option value="">Please Select</option>
-                    <option value="1">Puppies</option>
-                    <option value="2">Kitties</option>
-                  </select>
-                </label>
-              </div>
-
-              <div className="medium-6 columns">
-                <label htmlFor="vaccinationStatus">
-                  Vaccinated?
-                  <select
-                    id="vaccinationStatus"
-                    name="vaccinationStatus"
-                    value={newSurrender.vaccinationStatus}
-                    onChange={handleInput}
-                  >
-                    <option value="">Please Select</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-
-            <input className="button round" type="submit" value="Submit" />
-          </div>
+          </form>
         </div>
-      </form>
-    </div>
-  )
+    )
+  }
 }
 export default SurrenderForm

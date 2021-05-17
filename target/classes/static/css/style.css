@@ -47,6 +47,10 @@ body {
 .card {
   background-color: #e0e2e9;
   padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 form {
@@ -63,4 +67,8 @@ form {
 
 .home {
   padding-bottom: 3rem;
+}
+
+.navbar {
+  background-color: aqua;
 }

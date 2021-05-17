@@ -11,7 +11,7 @@ class Seeder {
         "INSERT INTO pet_types (type, img_url, description) VALUES ('Puppies', 'https://imagesvc.meredithcorp.io/v3/jumpstartpure/image?url=https://timeincsecure-a.akamaihd.net/rtmp_uds/3281700261001/201904/2112/3281700261001_6021263744001_6021254011001-vs.jpg?pubId=3281700261001&videoId=6021254011001&w=1280&h=720&q=90&c=cc', 'Adorable Puppies');"
       )
       await pool.query(
-        "INSERT INTO pet_types (type, img_url, description) VALUES ('Puppies', 'https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop', 'Adorable Kitties');"
+        "INSERT INTO pet_types (type, img_url, description) VALUES ('Kitties', 'https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop', 'Adorable Kitties');"
       )
       await pool.query(
         "INSERT INTO adoptable_pets (name, img_url, age, vaccination_status, adoption_story, adoption_status, type_id ) VALUES ('Nala', 'https://www.rover.com/blog/wp-content/uploads/2018/11/rottweiler-869018_1920.jpg', 3, true, 'This darling girl is ready to be shown off to your friends! Nala is a gorgeous female puppy that wants to light up your life. Nala will have a nose to tail vet check and arrive with a current health certificate. She will love running around town with you doing errands or snuggling at home to relax. Nala is eager to find her forever home. Do nott miss out on this spectacular companion.', true, 1);"

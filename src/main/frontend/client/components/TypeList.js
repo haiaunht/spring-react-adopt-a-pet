@@ -6,15 +6,16 @@ const TypeList = props => {
 
   const getTypes = async () => {
     try {
-      const response = await fetch("/api/v1/pets")
+      // const response = await fetch("/api/v1/pets")
+      const response = await fetch("/api/v1/pet-types")
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const responseData = await response.json()
-
-      setPets(responseData.pets)
+      // setPets(responseData.pets)
+      setPets(responseData.content)
     } catch (error) {
       console.error(`Unable to complete data fetch.`)
     }
@@ -25,7 +26,15 @@ const TypeList = props => {
   }, [])
 
   const typeObjects = pets.map(petType => {
-    return <TypeTile key={petType.id} petType={petType} />
+    return (
+      <TypeTile
+          key={petType.id}
+          id={petType.id}
+          type={petType.type}
+          imgUrl={petType.imgUrl}
+          description={petType.description}
+      />
+    )
   })
 
   return (

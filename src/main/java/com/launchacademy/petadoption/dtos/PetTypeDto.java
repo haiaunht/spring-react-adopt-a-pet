@@ -1,9 +1,12 @@
 package com.launchacademy.petadoption.dtos;
 
+import static com.launchacademy.petadoption.dtos.AdoptablePetDto.*;
+
 import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.PetType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,22 +27,14 @@ public class PetTypeDto {
     petTypeDto.setType(petType.getType());
     petTypeDto.setImg_url(petType.getImg_url());
     petTypeDto.setDescription(petType.getDescription());
-    petTypeDto.setAdoptablePetDtoList(petType.getAdoptablePetList());
+    /* petTypeDto.setAdoptablePetDtoList(fromAdoptablePetList(petType.getAdoptablePetList())); */
+    List<AdoptablePetDto> list = new ArrayList<>();
+    for (AdoptablePet x : petType.getAdoptablePetList()) {
+      AdoptablePetDto adoptablePetDto = fromAdoptablePet(x);
+      list.add(adoptablePetDto);
+      petTypeDto.adoptablePetDtoList.add(adoptablePetDto);
+    }
     return petTypeDto;
   }
 
-  private void setAdoptablePetDtoList(List<AdoptablePet> adoptablePetList) {
-    List<AdoptablePetDto> adoptablePetDtoList = new ArrayList<>();
-    for (AdoptablePet a : adoptablePetList) {
-      AdoptablePetDto dto = new AdoptablePetDto();
-      dto.setName(a.getName());
-      dto.setImgUrl(a.getImgUrl());
-      dto.setAge(a.getAge());
-      dto.setVaccinationStatus(a.getVaccinationStatus());
-      dto.setAdoptionStory(a.getAdoptionStory());
-      dto.setAdoptionStatus(a.getAdoptionStatus());
-      dto.setPetType(a.getPetType());
-      adoptablePetDtoList.add(dto);
-    }
-  }
 }

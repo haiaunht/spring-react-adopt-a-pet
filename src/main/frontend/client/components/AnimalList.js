@@ -7,14 +7,18 @@ const AnimalList = props => {
   const fetchAnimalType = async () => {
     try {
       const type = props.match.params.type
-      const response = await fetch(`/api/v1/pets/${type}`)
+      console.log(type)
+      // const response = await fetch(`/api/v1/pets/${type}`)
+      const response = await fetch(`/api/v1/pet-types/${type}`)
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
         throw error
       }
       const fetchedData = await response.json()
-      setAnimalType(fetchedData.pet)
+      console.log(fetchedData.adoptablePetDtoList)
+      //setAnimalType(fetchedData.pet)
+      setAnimalType(fetchedData.adoptablePetDtoList)
     } catch (error) {
       console.error(error)
     }
@@ -24,7 +28,8 @@ const AnimalList = props => {
     fetchAnimalType()
   }, [props])
 
-  const petList = animalType.adoptablePets.map(animal => {
+  //const petList = animalType.adoptablePets.map(animal => {
+  const petList = animalType.map(animal => {
     return (
       <AnimalTile
         key={animal.id}

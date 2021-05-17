@@ -28,4 +28,5 @@ public class AdoptableRestApiController {
   public Page<AdoptablePetDto> getListOfAdoptablePets(Pageable pageable) {
     return adoptablePetService.findAll(pageable);
   }
+
 }

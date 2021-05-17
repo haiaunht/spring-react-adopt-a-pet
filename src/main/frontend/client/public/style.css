@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
 body {
   background-color: #f9f9f9;
 }
@@ -8,10 +17,11 @@ body {
 }
 
 .adoption_app {
-  max-width: 40%;
-  margin: auto;
+  position: absolute;
+  max-width: 50%;
+  margin: 20px auto 30px;
   border-radius: 2%;
-  padding: 15px;
+  padding: 25px;
 }
 
 .error {
@@ -26,7 +36,7 @@ body {
 .cell {
   max-width: 40%;
   margin: auto;
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 .footer {
@@ -46,7 +56,9 @@ body {
 
 .card {
   background-color: #e0e2e9;
-  padding: 0.5rem;
+  padding: 1.5rem;
+  margin-top: 30px;
+  height: 40%;
 }
 
 form {
@@ -64,3 +76,33 @@ form {
 .home {
   padding-bottom: 3rem;
 }
+
+.navbar {
+  background-color: aqua;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 200px;
+}
+
+.navbar ul {
+  position: relative;
+  display: flex;
+  list-style: none;
+}
+
+.navbar ul li a {
+  display: inline-block;
+  color: #555;
+  font-weight: 800;
+  margin-left: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+

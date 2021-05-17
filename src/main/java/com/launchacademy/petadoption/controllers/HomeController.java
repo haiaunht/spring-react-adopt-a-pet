@@ -9,6 +9,8 @@ public class HomeController {
         return "forward:/";
     }
 
-
-
+    @GetMapping(value = {"/pets/{type}"})
+    public String forwardToType() {
+        return "forward:/pets/{type}";
+    }
 }

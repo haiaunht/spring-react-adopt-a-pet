@@ -7,7 +7,7 @@ const TypeList = props => {
   const getTypes = async () => {
     try {
       // const response = await fetch("/api/v1/pets")
-      const response = await fetch("/api/v1/pet-types")
+      const response = await fetch("/api/v1/pets")
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)

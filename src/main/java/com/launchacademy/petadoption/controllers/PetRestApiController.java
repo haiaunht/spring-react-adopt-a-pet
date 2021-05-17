@@ -20,17 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/pet-types")
+@RequestMapping("/api/v1/pets")
 public class PetRestApiController {
-
-//  @Autowired
-//  private PetTypeRepository petTypeRepo;
-//
-//  @GetMapping
-//  public Page<PetType> getListOfPetTypes(Pageable pageable) {
-//    return petTypeRepo.findAll(pageable);
-//  }
-
 
   private PetTypeService petTypeService;
   private PetTypeRepository petTypeRepository;
@@ -43,19 +34,25 @@ public class PetRestApiController {
   }
 
   @GetMapping
-  public Page<PetTypeDto> getListOfPetTypes(Pageable pageable) {
-    return petTypeService.findAll(pageable);
+  public Page<PetType> listAll(Pageable pageable) {
+    return petTypeRepository.findAll(pageable);
   }
 
-//  @GetMapping("/{type}")
-//  public PetType getType(@PathVariable String type) {
-//    return petTypeService.findByType(type).get();
+  ////DTO not show list of petType.adoptableList
+//  @GetMapping
+//  public Page<PetTypeDto> getListOfPetTypes(Pageable pageable) {
+//    return petTypeService.findAll(pageable);
 //  }
 
   @GetMapping("/{type}")
-  public PetTypeDto getType(@PathVariable String type) {
-    return petTypeService.findByType(type).get();
+  public PetType getType(@PathVariable String type) {
+    return petTypeRepository.findPetTypeBy(type);
   }
+
+//  @GetMapping("/{type}")
+//  public PetTypeDto getType(@PathVariable String type) {
+//    return petTypeService.findByType(type).get();
+//  }
 
 
   @NoArgsConstructor

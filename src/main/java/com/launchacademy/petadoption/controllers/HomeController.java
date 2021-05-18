@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping(value = {"/pets", "/pets/{type}", "/pets/{type}/{id}", "/surrender/new", "/adoptions"})
+    @GetMapping(value = {"/pets", "/pets/{type}", "/pets/{type}/{id}", "/surrender/new", "/adoptions", "/admin/adoptions_check", "/admin"})
     public String forward() {
         return "forward:/";
     }

@@ -105,4 +105,19 @@ form {
   padding: 10px 20px;
 }
 
+.callout {
+  position: fixed;
+  top: 170px;
+  max-width: 50%;
+}
+
+.right {
+  margin-right: 70px;
+}
+
+.button .round {
+  display: block;
+  margin: auto;
+}
+
 

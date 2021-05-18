@@ -74,3 +74,26 @@ form {
 .navbar {
   background-color: aqua;
 }
+
+.callout {
+  position: fixed;
+  top: 170px;
+  max-width: 50%;
+  margin: auto;
+}
+
+.right {
+  margin-right: 70px;
+}
+
+.in-process {
+  position: fixed;
+  top: 170px;
+  max-width: 50%;
+  margin: auto;
+}
+
+.button .round {
+  display: block;
+  margin: auto;
+}

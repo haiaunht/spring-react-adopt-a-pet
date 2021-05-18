@@ -25,7 +25,7 @@ const AnimalList = props => {
 
   useEffect(() => {
     fetchAnimalType()
-  }, [])
+  }, [props])
 
   // const petList = animalType.adoptablePets.map(animal => {
   const petList = animalType.map(animal => {

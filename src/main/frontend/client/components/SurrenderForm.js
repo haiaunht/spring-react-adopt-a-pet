@@ -18,6 +18,16 @@ const SurrenderForm = props => {
     vaccinationStatus: "",
     applicationStatus: "pending"
   })
+  const [newAdoptablePet, setNewAdoptablePet] = useState({
+    name: "",
+    imgUrl: "",
+    age: "",
+    vaccinationStatus: "",
+    adoptionStory: "",
+    adoptionStatus: "",
+    // typeId: ""
+    petType: {}
+  })
 
   const [errors, setErrors] = useState([])
   const [redirect, setRedirect] = useState(false)
@@ -52,12 +62,42 @@ const SurrenderForm = props => {
     }
   }
 
+  const addNewAdoptablePet = async () => {
+    try {
+      const response = await fetch("/api/v1/adoptions", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(newAdoptablePet)
+      })
+      if (!response.ok) {
+        if (response.status === 422) {
+          const data = await response.json()
+          return setErrors(data.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw error
+        }
+      } else {
+        const data = await response.json()
+        if (data) {
+          setSubmitSuccessful(true)
+        }
+      }
+    } catch (error) {
+      console.error(`Error in fetch: ${error}`)
+    }
+  }
+
   const handleInput = event => {
     setNewSurrender({
       ...newSurrender,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
+
   const validateInput = () => {
     let submissionErrors = {}
     const requiredFields = [
@@ -70,7 +110,7 @@ const SurrenderForm = props => {
       "petImageUrl",
       "vaccinationStatus"
     ]
-    console.log(newSurrender)
+    console.log("New surrender: " + newSurrender)
     requiredFields.forEach(field => {
       if (newSurrender[field].trim() === "") {
         submissionErrors = { ...submissionErrors, [field]: `is required` }
@@ -83,8 +123,19 @@ const SurrenderForm = props => {
   const handleSubmit = event => {
     event.preventDefault()
     if (validateInput()) {
-      console.log(newSurrender)
+      newAdoptablePet.name = newSurrender.petName
+      newAdoptablePet.imgUrl = newSurrender.petImageUrl
+      newAdoptablePet.age = newSurrender.petAge
+      newAdoptablePet.vaccinationStatus = newSurrender.vaccinationStatus
+      newAdoptablePet.adoptionStory = "just join form surrender department. (or should i add story column in surrender)"
+      newAdoptablePet.adoptionStatus = "yes"
+      newAdoptablePet.petType.id = newSurrender.petTypeId
+
+      console.log("Before persisting: " + newAdoptablePet)
       addNewSurrender()
+      addNewAdoptablePet()
+      console.log(newSurrender)
+      console.log("After persisting: " + newAdoptablePet)
     }
   }
 
@@ -230,7 +281,7 @@ const SurrenderForm = props => {
                       id="applicationStatus"
                       type="text"
                       name="applicationStatus"
-                      value="pending" hidden
+                      defaultValue="pending" hidden
                   />
                 </label>
 

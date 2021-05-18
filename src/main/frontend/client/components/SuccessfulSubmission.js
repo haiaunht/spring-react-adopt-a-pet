@@ -2,7 +2,7 @@ import React from "react"
 
 const SuccessfulSubmission = ({ userName }) => {
   return (
-    <div >
+    <div className="in-process">
         <h2>
           Congratulations, <strong>{userName}</strong>! <br />
           <span>

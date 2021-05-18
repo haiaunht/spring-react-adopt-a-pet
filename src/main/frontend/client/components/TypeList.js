@@ -23,7 +23,7 @@ const TypeList = props => {
 
   useEffect(() => {
     getTypes()
-  }, [])
+  }, [props])
 
   const typeObjects = pets.map(petType => {
     return (

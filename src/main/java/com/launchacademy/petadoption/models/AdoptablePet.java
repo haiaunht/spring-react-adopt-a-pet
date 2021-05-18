@@ -53,6 +53,9 @@ public class AdoptablePet {
     @Column(name = "adoption_status", nullable = false)
     private String adoptionStatus;
 
+    @Column(name = "type_id", nullable = false, insertable = false, updatable = false)
+    private Integer type_id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     @JsonIgnoreProperties("adoptablePetList")

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 const TypeTile = props => {
   //const { type, description, imgUrl } = props.petType
-  console.log(props.imgUrl)
   return (
       <div className="cell">
       {/*//<div className="pet-container">*/}

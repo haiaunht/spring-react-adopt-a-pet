@@ -148,17 +148,19 @@ const SurrenderForm = props => {
   } else {
 
     return (
-        <div>
+        <div id="surrender-form">
+        <div className="surrender-form-container">
           <h2>Surrender Your Pet:</h2>
-          <form onSubmit={handleSubmit} className="adoption_app">
-            <div className="grid-contrainer">
-              <div className="grid-x grid-padding-x">
+          {/*<form onSubmit={handleSubmit} className="adoption_app">*/}
+          <form onSubmit={handleSubmit} className="surrender-form-box">
+            {/*<div className="grid-contrainer">*/}
+            {/*  <div className="grid-x grid-padding-x">*/}
                 <div className="cell">
                   <Error errors={errors}/>
                 </div>
 
-                <div className="row">
-                  <div className="medium-6 columns">
+                {/*<div className="row">*/}
+                {/*  <div className="medium-6 columns">*/}
                     <label htmlFor="name">
                       Your Name:
                       <input
@@ -169,9 +171,9 @@ const SurrenderForm = props => {
                           value={newSurrender.name}
                       />
                     </label>
-                  </div>
+                  {/*</div>*/}
 
-                  <div className="medium-6 columns">
+                  {/*<div className="medium-6 columns">*/}
                     <label htmlFor="phoneNumber">
                       Phone:
                       <input
@@ -182,11 +184,11 @@ const SurrenderForm = props => {
                           value={newSurrender.phoneNumber}
                       />
                     </label>
-                  </div>
-                </div>
+                {/*  </div>*/}
+                {/*</div>*/}
 
-                <div className="row">
-                  <div className="medium-6 columns">
+                {/*<div className="row">*/}
+                {/*  <div className="medium-6 columns">*/}
                     <label htmlFor="email">
                       Email:
                       <input
@@ -197,9 +199,9 @@ const SurrenderForm = props => {
                           value={newSurrender.email}
                       />
                     </label>
-                  </div>
+                  {/*</div>*/}
 
-                  <div className="medium-6 columns">
+                  {/*<div className="medium-6 columns">*/}
                     <label htmlFor="petName">
                       Pets Name:
                       <input
@@ -210,11 +212,11 @@ const SurrenderForm = props => {
                           value={newSurrender.petName}
                       />
                     </label>
-                  </div>
-                </div>
+                {/*  </div>*/}
+                {/*</div>*/}
 
-                <div className="row">
-                  <div className="medium-6 columns">
+                {/*<div className="row">*/}
+                {/*  <div className="medium-6 columns">*/}
                     <label htmlFor="petImageUrl">
                       Picture of your pet:
                       <input
@@ -225,9 +227,9 @@ const SurrenderForm = props => {
                           value={newSurrender.petImageUrl}
                       />
                     </label>
-                  </div>
+                  {/*</div>*/}
 
-                  <div className="medium-6 columns">
+                  {/*<div className="medium-6 columns">*/}
                     <label htmlFor="petAge">
                       Pets Age (in months):
                       <input
@@ -238,11 +240,11 @@ const SurrenderForm = props => {
                           value={newSurrender.petAge}
                       />
                     </label>
-                  </div>
-                </div>
+                {/*  </div>*/}
+                {/*</div>*/}
 
-                <div className="row">
-                  <div className="medium-6 columns">
+                {/*<div className="row">*/}
+                {/*  <div className="medium-6 columns">*/}
                     <label htmlFor="petTypeId">
                       Pet Type:
                       <select
@@ -256,9 +258,9 @@ const SurrenderForm = props => {
                         <option value="2">Kitties</option>
                       </select>
                     </label>
-                  </div>
+                  {/*</div>*/}
 
-                  <div className="medium-6 columns">
+                  {/*<div className="medium-6 columns">*/}
                     <label htmlFor="vaccinationStatus">
                       Vaccinated?
                       <select
@@ -272,8 +274,8 @@ const SurrenderForm = props => {
                         <option value="false">No</option>
                       </select>
                     </label>
-                  </div>
-                </div>
+                {/*  </div>*/}
+                {/*</div>*/}
 
 
                 <label htmlFor="applicationStatus">
@@ -286,9 +288,10 @@ const SurrenderForm = props => {
                 </label>
 
                 <input className="button round" type="submit" value="Submit"/>
-              </div>
-            </div>
+            {/*  </div>*/}
+            {/*</div>*/}
           </form>
+        </div>
         </div>
     )
   }

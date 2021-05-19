@@ -10,22 +10,42 @@ const AnimalTile = props => {
   }
 
   return (
-    <div className="cell">  
-      <div className="card">
-        <div className="card-devider">
+      <div className="pet-box">
+        <div className="pet-img">
           <h2><Link to={`/pets/${props.type}/${props.id}`}>{props.name}</Link></h2>
         </div>
-        <Link to={`/pets/${props.type}/${props.id}`}>
-          <img className="images thumbnail" src={props.imgUrl}></img>
-        </Link>
-        <div className="card-section">
-          <p>
-            <strong>Age:</strong> {props.age} months<br/> 
-            <strong>Vaccinated:</strong> {vaccinated}
-          </p>
+        <div className="pet-details">
+          <div>
+            <Link to={`/pets/${props.type}/${props.id}`}>
+              <img className="images thumbnail" src={props.imgUrl}></img>
+            </Link>
+            <p>
+              <strong>Age:</strong> {props.age} months<br/>
+              <strong>Vaccinated:</strong> {vaccinated}
+            </p>
+          </div>
         </div>
+
       </div>
-    </div>
   )
+
+  // return (
+  //   <div className="cell">
+  //     <div className="card">
+  //       <div className="card-devider">
+  //         <h2><Link to={`/pets/${props.type}/${props.id}`}>{props.name}</Link></h2>
+  //       </div>
+  //       <Link to={`/pets/${props.type}/${props.id}`}>
+  //         <img className="images thumbnail" src={props.imgUrl}></img>
+  //       </Link>
+  //       <div className="card-section">
+  //         <p>
+  //           <strong>Age:</strong> {props.age} months<br/>
+  //           <strong>Vaccinated:</strong> {vaccinated}
+  //         </p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // )
 }
 export default AnimalTile

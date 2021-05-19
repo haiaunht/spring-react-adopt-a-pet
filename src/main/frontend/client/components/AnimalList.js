@@ -41,7 +41,21 @@ const AnimalList = props => {
       />
     )
   })
-  return <div>{petList}<br/><br/></div>
+
+  return (
+  <>
+    <div className="container">
+      <div className="content">
+        <div className="max-width-800">
+          <p>
+            These lovely faces needs your love!
+          </p>
+        </div>
+        <div className="pet">{petList}<br/><br/></div>
+      </div>
+    </div>
+  </>
+  )
 }
 
 export default AnimalList

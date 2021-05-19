@@ -15,6 +15,7 @@ const AdminSurrenderForm = props => {
     petType: {id: petTypeId}
   })
 
+  //if approved, add to adoptable_pets table
   const addToPetsAfterApproval = async () => {
     try {
       const response = await fetch("/api/v1/admin", {
@@ -39,6 +40,31 @@ const AdminSurrenderForm = props => {
     console.log("Approved")
   }
 
+  //if denied, remove from surrender_pets table -> NOT WORKING YET
+  const removeFromPetsAfterDeny = async () => {
+    const awaitPetId = props.surrender.id
+    console.log(awaitPetId)
+    try {
+      const response = await fetch(`/api/v1/admin/delete/${awaitPetId}`, {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(awaitApplication)
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw error
+      }
+      const body = await response.json()
+    } catch (error) {
+      console.error(`Error in Fetch: ${error.message}`)
+      setSubmitSuccessful(false)
+    }
+    console.log("Denied")
+  }
+
   const handleApprove = (event) => {
     event.preventDefault()
     addToPetsAfterApproval()
@@ -47,13 +73,15 @@ const AdminSurrenderForm = props => {
 
   const handleDeny = (event) => {
     event.preventDefault()
+    removeFromPetsAfterDeny()
     setSubmitSuccessful(false)
+    console.log(awaitApplication)
     console.log("Deny")
   }
 
   if (submitSuccessful) {
     return (
-        <div className="adiminform">
+        <div className="admin-form">
           <div>
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
@@ -80,7 +108,7 @@ const AdminSurrenderForm = props => {
     )
   } else if (submitSuccessful == false) {
     return (
-        <div className="adiminform">
+        <div className="admin-form">
           <div>
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
@@ -107,7 +135,7 @@ const AdminSurrenderForm = props => {
     )
   } else {
     return (
-        <div className="adiminform">
+        <div className="admin-form">
           <div>
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>

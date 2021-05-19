@@ -32,7 +32,8 @@ const App = props => {
             {/*<Route exact path="/adoptions/new" component={SurrenderForm} />*/}
             <Route exact path="/surrender/new" component={SurrenderForm} />
             <Route exact path="/admin/adoptions_check" component={AdminAdoptionForm} />
-            <Route exact path="/admin" component={Admin} />
+            {/*<Route exact path="/admin" component={Admin} />*/}
+            <Route exact path="/pending_applications" component={Admin} />
 
           </Switch>
         </div>

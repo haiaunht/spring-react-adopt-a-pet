@@ -8,15 +8,17 @@ const AdoptionForm = props => {
     name: "",
     phoneNumber: "",
     email: "",
-    homeStatus: ""
+    homeStatus: "",
+    applicationStatus:"pending"
   })
   const [errors, setErrors] = useState([])
 
   const addNewApplication = async () => {
     let formPayload = newAdoption
     formPayload.petId = props.id
+    console.log(formPayload)
     try {
-      const response = await fetch("/api/v1/application", {
+      const response = await fetch("/api/v1/adoptions-applications", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -59,6 +61,7 @@ const AdoptionForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    console.log(newAdoption)
     if (isFormComplete()) {
       addNewApplication(newAdoption)
     }
@@ -125,6 +128,15 @@ const AdoptionForm = props => {
               </label>
             </div>
           </div>
+
+          <label htmlFor="applicationStatus">
+            <input
+                id="applicationStatus"
+                type="text"
+                name="applicationStatus"
+                value="pending" hidden
+            />
+          </label>
 
           <input className="button round" type="submit" value="Apply" />
         </div>

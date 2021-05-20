@@ -218,14 +218,14 @@ form {
   width: 100%;
 }
 
-label {
-  margin: 20px auto 20px;
-  display: block;
-}
+/*label {*/
+/*  margin: 20px auto 20px;*/
+/*  display: block;*/
+/*}*/
 
 form {
   width: 70%;
-  background-color: #abcdef;
+  background-color: #e91e63;
 }
 
 /*admin*/

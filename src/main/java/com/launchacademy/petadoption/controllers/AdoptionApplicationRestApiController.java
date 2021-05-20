@@ -1,10 +1,7 @@
 package com.launchacademy.petadoption.controllers;
 
-import com.launchacademy.petadoption.dtos.AdoptablePetDto;
-import com.launchacademy.petadoption.models.AdoptablePet;
-import com.launchacademy.petadoption.models.SurrenderPet;
-import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
-import com.launchacademy.petadoption.services.AdoptablePetService;
+import com.launchacademy.petadoption.models.AdoptionApplication;
+import com.launchacademy.petadoption.repositories.AdoptionApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/adoptions")
+@RequestMapping("/api/v1/adoptions-applications")
 public class AdoptionApplicationRestApiController {
 
   @Autowired
-  private AdoptablePetRepository adoptablePetRepo;
+  private AdoptionApplicationRepository adoptionApplicationRepo;
 
   @GetMapping
-  public Page<AdoptablePet> getListOfAdoptablePet(Pageable pageable) {
-    return adoptablePetRepo.findAll(pageable);
+  public Page<AdoptionApplication> getListOfAdoptionApplications(Pageable pageable) {
+    return adoptionApplicationRepo.findAll(pageable);
   }
 
   @PostMapping
-  public AdoptablePet create(@RequestBody AdoptablePet adoptablePet) {
-    return adoptablePetRepo.save(adoptablePet);
+  public AdoptionApplication create(@RequestBody AdoptionApplication adoptionApplication) {
+    return adoptionApplicationRepo.save(adoptionApplication);
   }
 }

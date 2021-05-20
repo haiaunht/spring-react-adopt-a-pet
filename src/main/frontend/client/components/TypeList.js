@@ -38,9 +38,12 @@ const TypeList = props => {
   })
 
   return (
-    <div className = "home">
-      <h3>Here is TypeList.js live</h3>
-      {typeObjects}
+      <div className="container">
+        <div className="content">
+          <div className="max-width-800">
+            <div className="pet">{typeObjects}<br/><br/></div>
+          </div>
+        </div>
     </div>
   )
 }

@@ -11,8 +11,8 @@ import SurrenderForm from "./SurrenderForm"
 import SuccessTile from "./SuccessTile.js"
 import NavBar from "./NavBar.js"
 import AdoptionForm from "./AdoptionForm";
-import Admin from "./Admin";
-import AdminAdoptionForm from "./AdminAdoptionForm";
+import PendingApplications from "./PendingApplications.js";
+import Admin from "./Admin.js";
 
 const App = props => {
   return (
@@ -31,9 +31,9 @@ const App = props => {
             <Route exact path="/adoptions/new" component={AdoptionForm} />
             {/*<Route exact path="/adoptions/new" component={SurrenderForm} />*/}
             <Route exact path="/surrender/new" component={SurrenderForm} />
-            <Route exact path="/admin/adoptions_check" component={AdminAdoptionForm} />
+            <Route exact path="/admin" component={Admin} />
             {/*<Route exact path="/admin" component={Admin} />*/}
-            <Route exact path="/pending_applications" component={Admin} />
+            <Route exact path="/pending_applications" component={PendingApplications} />
 
           </Switch>
         </div>

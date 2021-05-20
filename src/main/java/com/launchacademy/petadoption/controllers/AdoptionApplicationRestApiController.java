@@ -32,6 +32,7 @@ public class AdoptionApplicationRestApiController {
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
-    adoptionApplicationRepo.deleteById(id);
+//    adoptionApplicationRepo.deleteById(id);
+    adoptionApplicationRepo.delete(adoptionApplication);
   }
 }

@@ -15,7 +15,7 @@ const AdminSurrenderForm = props => {
     petType: {id: petTypeId}
   })
 
-  //if approved, add to adoptable_pets table => ??? remove from surrender
+  //if approved, add to adoptable_pets table => remove from surrender
   const addToPetsAfterApproval = async () => {
     try {
       const response = await fetch("/api/v1/admin", {

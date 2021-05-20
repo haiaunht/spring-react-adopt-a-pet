@@ -30,13 +30,15 @@ public class PetRestApiController {
 
   private PetTypeService petTypeService;
   private PetTypeRepository petTypeRepository;
-  @Autowired private AdoptablePetRepository adoptPetRepo;
+  private AdoptablePetRepository adoptPetRepo;
 
   @Autowired
   public PetRestApiController(PetTypeService petTypeService,
-      PetTypeRepository petTypeRepository) {
+      PetTypeRepository petTypeRepository, AdoptablePetRepository
+       adoptPetRepo) {
     this.petTypeService = petTypeService;
     this.petTypeRepository = petTypeRepository;
+    this.adoptPetRepo = adoptPetRepo;
   }
 
   @GetMapping

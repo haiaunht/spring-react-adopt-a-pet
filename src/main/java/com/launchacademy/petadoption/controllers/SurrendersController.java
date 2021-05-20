@@ -31,6 +31,7 @@ public class SurrendersController {
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody SurrenderPet surrenderPet, @PathVariable Integer id) {
-    surrenderPetRepository.deleteById(id);
+//    surrenderPetRepository.deleteById(id);
+    surrenderPetRepository.delete(surrenderPet);
   }
 }

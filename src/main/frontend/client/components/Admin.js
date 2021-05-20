@@ -28,13 +28,17 @@ const Admin = props => {
         <div>
           <AdminAdoptionForm
               key={form.id}
+              applicationId={form.id}
               ownerName={form.name}
               phoneNumber={form.phoneNumber}
               email={form.email}
               homeStatus={form.homeStatus}
               applicationStatus={form.applicationStatus}
-              petId={form.petId}
-              petType={form.type}
+              // petId={form.petId}
+              // petType={form.type}
+              //petId={form.adoptablePet.id}
+              // petType={form.adoptablePets.petType.type}
+              form={form}
           />
         </div>
     )

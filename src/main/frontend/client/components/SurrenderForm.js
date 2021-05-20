@@ -277,7 +277,6 @@ const SurrenderForm = props => {
                 {/*  </div>*/}
                 {/*</div>*/}
 
-
                 <label htmlFor="applicationStatus">
                   <input
                       id="applicationStatus"

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 const TypeTile = props => {
   return (
 
-
       <div className="pet-box">
           <div className="pet-img">
             <h2><Link to={`/pets/${props.type}`}>{props.type}</Link></h2>

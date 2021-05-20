@@ -15,7 +15,7 @@ const AdminSurrenderForm = props => {
     petType: {id: petTypeId}
   })
 
-  //if approved, add to adoptable_pets table
+  //if approved, add to adoptable_pets table => ??? remove from surrender
   const addToPetsAfterApproval = async () => {
     try {
       const response = await fetch("/api/v1/admin", {
@@ -25,6 +25,7 @@ const AdminSurrenderForm = props => {
         }),
         body: JSON.stringify(awaitApplication)
       })
+
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -40,8 +41,8 @@ const AdminSurrenderForm = props => {
     console.log("Approved")
   }
 
-  //if denied, remove from surrender_pets table -> NOT WORKING YET
-  const removeFromPetsAfterDeny = async () => {
+  //if denied, remove from surrender_pets table
+  const removeAPetAfterApprovalOrDenial = async () => {
     const awaitPetId = props.surrender.id
     console.log(awaitPetId)
     try {
@@ -68,12 +69,13 @@ const AdminSurrenderForm = props => {
   const handleApprove = (event) => {
     event.preventDefault()
     addToPetsAfterApproval()
+    removeAPetAfterApprovalOrDenial()
     console.log(awaitApplication)
   }
 
   const handleDeny = (event) => {
     event.preventDefault()
-    removeFromPetsAfterDeny()
+    removeAPetAfterApprovalOrDenial()
     setSubmitSuccessful(false)
     console.log(awaitApplication)
     console.log("Deny")

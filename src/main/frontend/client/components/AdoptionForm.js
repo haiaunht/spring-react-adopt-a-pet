@@ -4,18 +4,21 @@ import _ from "lodash"
 import Error from "./Error"
 
 const AdoptionForm = props => {
+  console.log(props.id)
   const [newAdoption, setNewAdoption] = useState({
     name: "",
     phoneNumber: "",
     email: "",
     homeStatus: "",
-    applicationStatus:"pending"
+    applicationStatus:"pending",
+    adoptablePet: {id:""}
   })
   const [errors, setErrors] = useState([])
 
   const addNewApplication = async () => {
     let formPayload = newAdoption
     formPayload.petId = props.id
+    formPayload.adoptablePet.id = formPayload.petId
     console.log(formPayload)
     try {
       const response = await fetch("/api/v1/adoptions-applications", {

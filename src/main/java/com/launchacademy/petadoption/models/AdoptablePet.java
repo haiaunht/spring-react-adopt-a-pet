@@ -59,11 +59,13 @@ public class AdoptablePet {
     @Column(name = "type_id", nullable = false, insertable = false, updatable = false)
     private Integer type_id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    //@ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "type_id")
-    @JsonIgnoreProperties("adoptablePetList")
+    @JsonIgnoreProperties("adoptablePets")
     private PetType petType;
 
-//    @OneToMany(mappedBy = "adoptablePet")
-//    private List<AdoptionApplication> applications = new ArrayList<>();
+    @OneToMany(mappedBy = "adoptablePet", orphanRemoval = true)
+    @JsonIgnoreProperties("adoptablePet")
+    private List<AdoptionApplication> applications = new ArrayList<>();
 }

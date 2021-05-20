@@ -3,6 +3,7 @@ package com.launchacademy.petadoption.controllers;
 import com.launchacademy.petadoption.dtos.PetTypeDto;
 import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.PetType;
+import com.launchacademy.petadoption.models.SurrenderPet;
 import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
 import com.launchacademy.petadoption.repositories.PetTypeRepository;
 import com.launchacademy.petadoption.services.PetTypeService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -61,6 +64,12 @@ public class PetRestApiController {
   public AdoptablePet getPetIdOfPetType(@PathVariable String type, @PathVariable Integer id) {
     PetType petType = petTypeRepository.findPetTypeBy(type);
     return adoptPetRepo.findById(id).orElseThrow(() -> new PetTypeNotFoundException());
+  }
+
+  //just added
+  @PostMapping("/delete/{id}")
+  public void delete(@PathVariable Integer id) {
+    adoptPetRepo.deleteById(id);
   }
 
   @NoArgsConstructor

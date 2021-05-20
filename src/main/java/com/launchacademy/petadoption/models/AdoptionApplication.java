@@ -1,7 +1,9 @@
 package com.launchacademy.petadoption.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,6 +50,12 @@ public class AdoptionApplication {
   @Column(name = "application_status")
   private String applicationStatus;
 
-  @Column(name = "pet_id")
-  private Integer petId;
+//  @Column(name = "pet_id")
+//  private Integer petId;
+
+  //@ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
+  @JoinColumn(name = "pet_id")
+  @JsonIgnoreProperties("applications")
+  private AdoptablePet adoptablePet;
 }

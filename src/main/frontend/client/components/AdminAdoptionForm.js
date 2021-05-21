@@ -156,7 +156,7 @@ const AdminAdoptionForm = props => {
   } else {
     return (
         <div className="pet-box">
-          <div >
+          <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
@@ -164,10 +164,10 @@ const AdminAdoptionForm = props => {
               <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
               <label><strong>Pet's name:  </strong>{animalWithAdoptionForm.name}</label><br/>
               <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
-              <input type="submit" value="Approve" />
+              <input className="approve" type="submit" value="Approve" />
             </form>
-            <form onSubmit={handleDeny}>
-              <input type="submit" value="Deny"/>
+            <form onSubmit={handleDeny} className="deny-form">
+              <input type="submit" className="deny" value="Deny"/>
             </form>
           </div>
         </div>

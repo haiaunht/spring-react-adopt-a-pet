@@ -75,7 +75,7 @@ form {
 .animal-show {
   max-width: 40%;
   margin: 120px auto 1% auto;
-  background-color: #e0e2e9;
+  background-color: #abcdef;
   border-radius: 2%;
   padding: 1.25rem 2rem;
 }
@@ -272,7 +272,38 @@ form .admin-form {
 }
 
 h2 {
-  display: block;
-  margin: auto;
+  text-align: center;
   color: blue;
 }
+
+.pending-box .approve {
+  margin-bottom: 10px;
+  border-style: outset;
+  background-color: chartreuse;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+.success {
+  display: block;
+  margin: auto;
+  width: 70%;
+}
+
+.deny-form {
+  width: 1%;
+  height: 0.1%;
+  background-color: #ffffff;
+  border: none;
+}
+
+.deny  {
+  margin: 10px auto 10px 248px;
+  border-style: outset;
+  background-color: crimson;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+

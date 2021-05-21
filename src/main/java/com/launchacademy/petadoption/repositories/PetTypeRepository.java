@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface PetTypeRepository extends PagingAndSortingRepository<PetType, Integer> {
   @Query("SELECT p FROM PetType p WHERE p.type = :type")
   public PetType findPetTypeBy(@Param("type") String type);
+
 }

@@ -22,15 +22,23 @@ public class PetTypeService {
     this.petTypeRepo = petTypeRepo;
     this.petTypeMapper = petTypeMapper;
   }
+//
+//  public Optional<PetTypeDto> findByType(String type) {
+//    Optional<PetType> pet = Optional.ofNullable(petTypeRepo.findPetTypeBy(type));
+//    return Optional.ofNullable(petTypeMapper.petTypeToPetTypeDto(pet.get()));
+//  }
+//
+//  public Page<PetTypeDto> findAll(Pageable pageable) {
+//    Page<PetType> page = petTypeRepo.findAll(pageable);
+//    return new PageImpl<>(petTypeMapper.petTypesToPetTypeDtos(page.getContent()), pageable, page.getTotalElements());
+//  }
 
-  public Optional<PetTypeDto> findByType(String type) {
-    Optional<PetType> pet = Optional.ofNullable(petTypeRepo.findPetTypeBy(type));
-    return Optional.ofNullable(petTypeMapper.petTypeToPetTypeDto(pet.get()));
+  public PetType findPetTypeBy(String type) {
+    return petTypeRepo.findPetTypeBy(type);
   }
 
-  public Page<PetTypeDto> findAll(Pageable pageable) {
-    Page<PetType> page = petTypeRepo.findAll(pageable);
-    return new PageImpl<>(petTypeMapper.petTypesToPetTypeDtos(page.getContent()), pageable, page.getTotalElements());
+  public Page<PetType> findAll(Pageable pageable) {
+    return petTypeRepo.findAll(pageable);
   }
 
 }

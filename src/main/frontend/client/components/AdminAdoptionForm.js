@@ -49,7 +49,7 @@ const AdminAdoptionForm = props => {
   const removeAPetAfterAdoptionApprovalFromApplication = async (status) => {
     const applicationId = props.applicationId
     console.log(applicationId)
-
+    //setSubmitSuccessful(true)
     try {
       //const response = await fetch(`/api/v1/adoptions-applications/delete/${applicationId}`, {
       const response = await fetch(`/api/v1/adoptions-applications/update/${applicationId}/${status}`, {
@@ -71,21 +71,21 @@ const AdminAdoptionForm = props => {
       console.error(`Error in Fetch: ${error.message}`)
       setSubmitSuccessful(false)
     }
-    setSubmitSuccessful(true)
+
   }
 
   //need to convert to adoptable_pets object to remove
   const removeAPetAfterAdoptionApproval = async (status) => {
     console.log(status)
-    if (status.equals("approved")) {
+    if (status === "approved") {
       setSubmitSuccessful(true)
-    } else if (status.equals("denied")) {
+    } else if (status === "denied") {
       setSubmitSuccessful(false)
     }
+    console.log(animalWithAdoptionForm)
     try {
       // const response = await fetch(`/api/v1/pets/delete/${animalId}`, {
       const response = await fetch(`/api/v1/pets/update/${animalId}/${status}`, {
-
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -104,12 +104,7 @@ const AdminAdoptionForm = props => {
       console.error(`Error in Fetch: ${error.message}`)
       setSubmitSuccessful(false)
     }
-
     console.log("Adoption approved. Remove from adoptable_pets")
-  }
-
-  const updateTheApplicationStatus = async () => {
-
   }
 
   useEffect(() => {

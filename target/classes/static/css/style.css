@@ -92,6 +92,7 @@ form {
 .in-process {
   position: fixed;
   top: 170px;
+  left: 38%;
   max-width: 50%;
   margin: auto;
 }

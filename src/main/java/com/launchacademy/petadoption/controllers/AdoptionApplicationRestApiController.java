@@ -1,7 +1,6 @@
 package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.models.AdoptionApplication;
-import com.launchacademy.petadoption.models.SurrenderPet;
 import com.launchacademy.petadoption.repositories.AdoptionApplicationRepository;
 import com.launchacademy.petadoption.services.AdoptionApplicationService;
 import java.util.List;

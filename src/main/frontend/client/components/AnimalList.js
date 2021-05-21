@@ -29,17 +29,20 @@ const AnimalList = props => {
 
   // const petList = animalType.adoptablePets.map(animal => {
   const petList = animalType.map(animal => {
-    return (
-      <AnimalTile
-        key={animal.id}
-        id={animal.id}
-        name={animal.name}
-        age={animal.age}
-        vaccinationStatus={animal.vaccinationStatus}
-        imgUrl={animal.imgUrl}
-        type={type}
-      />
-    )
+    if (animal.adoptionStatus === "null" || animal.adoptionStatus === "denied") {
+      return (
+          <AnimalTile
+              key={animal.id}
+              id={animal.id}
+              name={animal.name}
+              age={animal.age}
+              vaccinationStatus={animal.vaccinationStatus}
+              imgUrl={animal.imgUrl}
+              type={type}
+          />
+      )
+    }
+
   })
 
   return (

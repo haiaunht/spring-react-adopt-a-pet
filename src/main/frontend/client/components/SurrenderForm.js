@@ -287,7 +287,7 @@ const SurrenderForm = props => {
                   />
                 </label>
 
-                <input className="button round" type="submit" value="Submit"/>
+                <input id="surrender-btn" type="submit" value="Submit"/>
             {/*  </div>*/}
             {/*</div>*/}
           </form>

@@ -11,6 +11,10 @@ body {
   background-color: #f9f9f9;
 }
 
+h1 {
+  text-align: center;
+}
+
 .images {
   max-width: 250px;
   max-height: 250px;
@@ -70,7 +74,12 @@ form {
   margin: 120px auto 1% auto;
   background-color: #e0e2e9;
   border-radius: 2%;
-  padding: 0.25rem 1rem;
+  padding: 1.25rem 2rem;
+}
+
+.animal-show img {
+  display: block;
+  margin: auto;
 }
 
 .home {
@@ -215,7 +224,9 @@ form {
   justify-content: space-between;
   flex-wrap: wrap;
   padding-top: 30px;
-  width: 100%;
+  width: 80%;
+  border-radius: 100px;
+  border: outset black;
 }
 
 /*label {*/
@@ -236,4 +247,17 @@ form {
 
 .admin-form label {
   margin: 15px auto 15px 20px;
+}
+
+#surrender-btn {
+  font-size: 20px;
+  color: #fff;
+  background-color: #e91e63;
+  display: block;
+  margin: 15px 0 15px 320px;
+
+  padding: 4px 10px;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: 0.5s;
 }

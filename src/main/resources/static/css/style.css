@@ -65,8 +65,10 @@ form {
   margin: 1% auto 1% auto;
   background-color: #e0e2e9;
   border-radius: 2%;
-  padding: 0.25rem 1rem;
+  padding: 1.25rem 2rem;
 }
+
+
 
 .home {
   padding-bottom: 3rem;
@@ -167,9 +169,6 @@ form {
   margin-left: 100px;
 }
 
-#surrender-form input, select{
-  margin-left: 30px;
-}
 
 #surrender-form h2 {
   text-align: center;
@@ -208,6 +207,8 @@ form {
   flex-wrap: wrap;
   padding-top: 30px;
   width: 80%;
+  border-radius: 100px;
+  border: outset black;
 }
 
 label {
@@ -234,13 +235,13 @@ form {
   transition: 0.5s;
 }
 
-.surrender-form-box .button {
+#surrender-btn {
   /*margin-top: 10px;*/
   font-size: 20px;
   color: #fff;
   background-color: #e91e63;
   display: block;
-  margin-left: 300px;
+  margin: 25px 0 15px 320px;
   padding: 4px 10px;
   border-radius: 15px;
   text-decoration: none;

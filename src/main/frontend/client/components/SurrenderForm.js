@@ -149,8 +149,9 @@ const SurrenderForm = props => {
 
     return (
         <div id="surrender-form">
-        <div className="surrender-form-container">
           <h2>Surrender Your Pet:</h2>
+        <div className="surrender-form-container">
+
           {/*<form onSubmit={handleSubmit} className="adoption_app">*/}
           <form onSubmit={handleSubmit} className="surrender-form-box">
             {/*<div className="grid-contrainer">*/}

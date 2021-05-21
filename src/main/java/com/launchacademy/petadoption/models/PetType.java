@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,8 +28,17 @@ public class PetType {
   @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="pet_type_generator")
   @Column(name="id", nullable=false, unique=true)
   private Integer id;
+
+  @NotBlank
+  @Column(name = "type")
   private String type;
+
+  @NotBlank
+  @Column(name = "img_url")
   private String imgUrl;
+
+  @NotBlank
+  @Column(name = "description")
   private String description;
 
   @OneToMany(mappedBy = "petType", cascade = CascadeType.ALL)

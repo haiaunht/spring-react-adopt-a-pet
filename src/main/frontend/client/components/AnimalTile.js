@@ -28,24 +28,5 @@ const AnimalTile = props => {
 
       </div>
   )
-
-  // return (
-  //   <div className="cell">
-  //     <div className="card">
-  //       <div className="card-devider">
-  //         <h2><Link to={`/pets/${props.type}/${props.id}`}>{props.name}</Link></h2>
-  //       </div>
-  //       <Link to={`/pets/${props.type}/${props.id}`}>
-  //         <img className="images thumbnail" src={props.imgUrl}></img>
-  //       </Link>
-  //       <div className="card-section">
-  //         <p>
-  //           <strong>Age:</strong> {props.age} months<br/>
-  //           <strong>Vaccinated:</strong> {vaccinated}
-  //         </p>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
 }
 export default AnimalTile

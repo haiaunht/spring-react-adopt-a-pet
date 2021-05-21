@@ -20,8 +20,8 @@ const NavBar = () => {
               </li>
 
               <li className="right">
-                {/*<Link to="/adoptions/new">Surrender Your Pet</Link>*/}
-                <Link to="/surrender/new">Surrender Your Pet</Link>
+                <Link to="/adoptions/new">Surrender Your Pet</Link>
+                {/*<Link to="/surrender/new">Surrender Your Pet</Link>*/}
               </li>
             </ul>
           </div>

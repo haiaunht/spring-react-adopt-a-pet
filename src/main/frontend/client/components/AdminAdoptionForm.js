@@ -33,8 +33,6 @@ const AdminAdoptionForm = props => {
         throw error
       }
       const responseBody = await response.json()
-      //setAwaitAdoptionForm(responseBody)
-      console.log(responseBody)
       setAnimalWithAdoptionForm(responseBody)
       animalWithAdoptionForm.name = responseBody.name
       animalWithAdoptionForm.imgUrl = responseBody.imgUrl
@@ -67,9 +65,6 @@ const AdminAdoptionForm = props => {
         throw error
       } else {
         const body = await response.json()
-        // if (body) {
-        //   setSubmitSuccessful(true)
-        // }
         console.log("Adoption application approved. Remove from adoptable_applications")
       }
     } catch (error) {
@@ -98,9 +93,6 @@ const AdminAdoptionForm = props => {
         throw error
       } else {
         const body = await response.json()
-        // if (body) {
-        //   setSubmitSuccessful(true)
-        // }
       }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
@@ -174,7 +166,6 @@ const AdminAdoptionForm = props => {
               <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
               <input type="submit" value="Approve" />
             </form>
-
             <form onSubmit={handleDeny}>
               <input type="submit" value="Deny"/>
             </form>

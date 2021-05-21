@@ -99,11 +99,6 @@ const AdminSurrenderForm = props => {
               <input name="age" value={props.surrender.petAge} hidden/>
               <label><strong>Application status: APPROVED</strong></label><br/>
               <a href="/pets" >Go to Home</a>
-            {/*  <input type="submit" value="Approve" />*/}
-
-            {/*</form>*/}
-            {/*<form onSubmit={handleDeny}>*/}
-            {/*  <input type="submit" value="Deny"/>*/}
             </form>
           </div>
         </div>
@@ -125,12 +120,7 @@ const AdminSurrenderForm = props => {
               <label htmlFor="age"><strong>Pet's Age: </strong>{props.surrender.petAge}</label><br/>
               <input name="age" value={props.surrender.petAge} hidden/>
               <label><strong>Application status: DENY</strong></label><br/>
-
-            {/*  <input type="submit" value="Approve" />*/}
-
-            {/*</form>*/}
-            {/*<form onSubmit={handleDeny}>*/}
-            {/*  <input type="submit" value="Deny"/>*/}
+              <a href="/pets" >Go to Home</a>
             </form>
           </div>
         </div>

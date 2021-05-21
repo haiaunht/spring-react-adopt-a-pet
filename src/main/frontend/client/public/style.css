@@ -197,7 +197,7 @@ form {
 #surrender-form-box .input-box input[type="submit"]:hover {
   background-color: #fff;
   transform: rotateY(360deg);
-  color: #e91e63;
+  color: #e0e2e9;
 }
 
 /*@media (max-width: 1200px) {*/
@@ -225,7 +225,7 @@ form {
 
 form {
   width: 70%;
-  background-color: #e91e63;
+  background-color: #abcdef;
 }
 
 /*admin*/

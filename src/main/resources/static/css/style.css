@@ -12,8 +12,8 @@ body {
   max-width: 50%;
   /*margin: 120px auto;*/
   display: block;
-  margin: auto;
-  left: 40%;
+  margin: 50px auto 0 25%;
+  /*left: 40%;*/
   border-radius: 2%;
   padding: 15px;
 }
@@ -241,9 +241,44 @@ form {
   color: #fff;
   background-color: #e91e63;
   display: block;
-  margin: 25px 0 15px 320px;
+  margin: 25px 0 15px 340px;
   padding: 4px 10px;
   border-radius: 15px;
   text-decoration: none;
   transition: 0.5s;
+}
+
+.pending-box label {
+  display: block;
+  margin: auto;
+}
+
+.pending-box .approve {
+ margin-bottom: 10px;
+  border-style: outset;
+  background-color: chartreuse;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+.deny-form {
+  width: 1%;
+  height: 0.1%;
+  background-color: #ffffff;
+  border: none;
+}
+
+.deny  {
+  margin: 10px auto 10px 248px;
+  border-style: outset;
+  background-color: crimson;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+.success {
+  display: block;
+  margin: auto;
 }

@@ -115,7 +115,7 @@ const AdoptionForm = props => {
                     Email Address
                     <input
                         id="email"
-                        type="text"
+                        type="email"
                         name="email"
                         onChange={handleChange}
                         value={newAdoption.email}

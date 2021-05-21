@@ -83,11 +83,11 @@ const AdminSurrenderForm = props => {
 
   if (submitSuccessful) {
     return (
-        <div className="admin-form">
-          <div>
+        <div className="pet-box">
+          <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
-              <img src={props.surrender.petImageUrl} height={300} width={400}/><br/>
+              <img className="pet-img" src={props.surrender.petImageUrl} height={300} width={400}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
@@ -105,8 +105,8 @@ const AdminSurrenderForm = props => {
     )
   } else if (submitSuccessful == false) {
     return (
-        <div className="admin-form">
-          <div>
+        <div className="pet-box">
+          <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
               <img src={props.surrender.petImageUrl} height={300} width={400}/><br/>
@@ -127,8 +127,8 @@ const AdminSurrenderForm = props => {
     )
   } else {
     return (
-        <div className="admin-form">
-          <div>
+        <div className="pet-box">
+          <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
               <img src={props.surrender.petImageUrl} height={300} width={400}/><br/>
@@ -143,11 +143,11 @@ const AdminSurrenderForm = props => {
               <input name="age" value={props.surrender.petAge} hidden/>
               <label><strong>Application status: </strong>{props.surrender.applicationStatus}</label><br/>
 
-              <input type="submit" value="Approve" />
+              <input className="approve" type="submit" value="Approve" />
 
             </form>
-            <form onSubmit={handleDeny}>
-              <input type="submit" value="Deny"/>
+            <form onSubmit={handleDeny} className="deny-form">
+              <input className="deny"  type="submit" value="Deny"/>
             </form>
           </div>
         </div>

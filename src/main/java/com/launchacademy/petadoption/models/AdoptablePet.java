@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table(name="adoptable_pets")
@@ -37,6 +38,7 @@ public class AdoptablePet {
     private String name;
 
     @NotBlank
+    @URL
     @Column(name = "img_url", nullable = false)
     private String imgUrl;
 

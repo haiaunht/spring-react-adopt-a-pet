@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table(name="pet_types")
@@ -34,6 +35,7 @@ public class PetType {
   private String type;
 
   @NotBlank
+  @URL(message = "should be an url")
   @Column(name = "img_url")
   private String imgUrl;
 

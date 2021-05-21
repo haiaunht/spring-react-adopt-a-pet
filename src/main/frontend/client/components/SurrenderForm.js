@@ -194,7 +194,7 @@ const SurrenderForm = props => {
                       Email:
                       <input
                           id="email"
-                          type="text"
+                          type="email"
                           name="email"
                           onChange={handleInput}
                           value={newSurrender.email}
@@ -222,7 +222,7 @@ const SurrenderForm = props => {
                       Picture of your pet:
                       <input
                           id="petImageUrl"
-                          type="text"
+                          type="url"
                           name="petImageUrl"
                           onChange={handleInput}
                           value={newSurrender.petImageUrl}

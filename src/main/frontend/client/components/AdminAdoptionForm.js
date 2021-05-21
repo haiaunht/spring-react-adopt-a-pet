@@ -40,19 +40,19 @@ const AdminAdoptionForm = props => {
       animalWithAdoptionForm.vaccinationStatus = responseBody.vaccinationStatus
       animalWithAdoptionForm.adoptionStory = responseBody.adoptionStory
       animalWithAdoptionForm.petType = responseBody.petType
-      console.log(animalWithAdoptionForm)
       awaitAdoptionForm.adoptablePet = animalWithAdoptionForm
-      console.log(awaitAdoptionForm)
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`)
     }
   }
 
-  const removeAPetAfterAdoptionApprovalFromApplication = async () => {
+  const removeAPetAfterAdoptionApprovalFromApplication = async (status) => {
     const applicationId = props.applicationId
     console.log(applicationId)
+
     try {
-      const response = await fetch(`/api/v1/adoptions-applications/delete/${applicationId}`, {
+      //const response = await fetch(`/api/v1/adoptions-applications/delete/${applicationId}`, {
+      const response = await fetch(`/api/v1/adoptions-applications/update/${applicationId}/${status}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -75,11 +75,17 @@ const AdminAdoptionForm = props => {
   }
 
   //need to convert to adoptable_pets object to remove
-  const removeAPetAfterAdoptionApproval = async () => {
-    console.log(animalWithAdoptionForm)
-    console.log(animalId)
+  const removeAPetAfterAdoptionApproval = async (status) => {
+    console.log(status)
+    if (status.equals("approved")) {
+      setSubmitSuccessful(true)
+    } else if (status.equals("denied")) {
+      setSubmitSuccessful(false)
+    }
     try {
-      const response = await fetch(`/api/v1/pets/delete/${animalId}`, {
+      // const response = await fetch(`/api/v1/pets/delete/${animalId}`, {
+      const response = await fetch(`/api/v1/pets/update/${animalId}/${status}`, {
+
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -98,12 +104,13 @@ const AdminAdoptionForm = props => {
       console.error(`Error in Fetch: ${error.message}`)
       setSubmitSuccessful(false)
     }
-    setSubmitSuccessful(true)
+
     console.log("Adoption approved. Remove from adoptable_pets")
   }
 
-  //need remove from adoptable_pets if approve for adoption
-  //denied or null adoption status will stay in db
+  const updateTheApplicationStatus = async () => {
+
+  }
 
   useEffect(() => {
     getAnimalAdoptionForm()
@@ -111,12 +118,20 @@ const AdminAdoptionForm = props => {
 
   const handleApprove = (event) => {
     event.preventDefault()
-    removeAPetAfterAdoptionApprovalFromApplication()
-    removeAPetAfterAdoptionApproval()
+    // animalWithAdoptionForm.applicationStatus = "approved"
+    removeAPetAfterAdoptionApproval("approved")
+    removeAPetAfterAdoptionApprovalFromApplication("approved")
+    //removeAPetAfterAdoptionApprovalFromApplication()
+    //removeAPetAfterAdoptionApproval()
+    console.log(awaitAdoptionForm)
   }
 
   const handleDeny = (event) => {
     event.preventDefault()
+    // animalWithAdoptionForm.applicationStatus = "denied"
+    removeAPetAfterAdoptionApproval("denied")
+    removeAPetAfterAdoptionApprovalFromApplication("denied")
+    console.log(animalWithAdoptionForm)
     setSubmitSuccessful(false)
     console.log("Deny")
   }
@@ -130,6 +145,7 @@ const AdminAdoptionForm = props => {
             <label><strong>Name: </strong>{props.ownerName}</label><br/>
             <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
             <label><strong>Email: </strong>{props.email}</label><br/>
+            <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
             <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
             <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
             <label><strong>Application status: </strong>APPROVED</label><br/><br/><hr/>
@@ -145,6 +161,7 @@ const AdminAdoptionForm = props => {
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
               <label><strong>Email: </strong>{props.email}</label><br/>
+              <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
               <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
               <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
               <label><strong>Application

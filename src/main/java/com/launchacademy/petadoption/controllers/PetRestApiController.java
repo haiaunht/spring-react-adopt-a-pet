@@ -6,6 +6,7 @@ import com.launchacademy.petadoption.models.PetType;
 import com.launchacademy.petadoption.models.SurrenderPet;
 import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
 import com.launchacademy.petadoption.repositories.PetTypeRepository;
+import com.launchacademy.petadoption.services.AdoptablePetService;
 import com.launchacademy.petadoption.services.PetTypeService;
 import java.util.Optional;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,9 @@ public class PetRestApiController {
   private PetTypeService petTypeService;
   private PetTypeRepository petTypeRepository;
   private AdoptablePetRepository adoptPetRepo;
+
+  @Autowired
+  private AdoptablePetService service;
 
   @Autowired
   public PetRestApiController(PetTypeService petTypeService,
@@ -72,6 +76,12 @@ public class PetRestApiController {
   @PostMapping("/delete/{id}")
   public void delete(@PathVariable Integer id) {
     adoptPetRepo.deleteById(id);
+  }
+
+  //just added
+  @PostMapping("/update/{id}/{status}")
+  public void update(@PathVariable Integer id, @PathVariable String status) {
+    service.update(id, status);
   }
 
   @NoArgsConstructor

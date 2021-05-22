@@ -181,6 +181,11 @@ form {
   border-radius: 10px;
 }
 
+.pet-box .pending-box {
+  display: block;
+  margin-left: 188px;
+}
+
 .pet .pet-box .pet-details h2 a {
   font-size: 18px;
   margin-bottom: 10px;
@@ -299,7 +304,7 @@ h2 {
 }
 
 .deny  {
-  margin: 10px auto 10px 248px;
+  margin: 10px auto 10px 188px;
   border-style: outset;
   background-color: crimson;
   padding: 10px;

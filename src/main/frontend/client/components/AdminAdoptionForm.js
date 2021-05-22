@@ -46,10 +46,14 @@ const AdminAdoptionForm = props => {
     }
   }
 
-  const removeAPetAfterAdoptionApprovalFromApplication = async (status) => {
+  const updateApplicationStatis = async (status) => {
     const applicationId = props.applicationId
     console.log(applicationId)
-    //setSubmitSuccessful(true)
+    if (status === "approved") {
+      setSubmitSuccessful(true)
+    } else if (status === "denied") {
+      setSubmitSuccessful(false)
+    }
     try {
       //const response = await fetch(`/api/v1/adoptions-applications/delete/${applicationId}`, {
       const response = await fetch(`/api/v1/adoptions-applications/update/${applicationId}/${status}`, {
@@ -69,19 +73,13 @@ const AdminAdoptionForm = props => {
       }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
-      setSubmitSuccessful(false)
     }
 
   }
 
   //need to convert to adoptable_pets object to remove
-  const removeAPetAfterAdoptionApproval = async (status) => {
+  const updatePetAdoptionStatus = async (status) => {
     console.log(status)
-    if (status === "approved") {
-      setSubmitSuccessful(true)
-    } else if (status === "denied") {
-      setSubmitSuccessful(false)
-    }
     console.log(animalWithAdoptionForm)
     try {
       // const response = await fetch(`/api/v1/pets/delete/${animalId}`, {
@@ -102,7 +100,6 @@ const AdminAdoptionForm = props => {
       }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
-      setSubmitSuccessful(false)
     }
     console.log("Adoption approved. Remove from adoptable_pets")
   }
@@ -113,34 +110,28 @@ const AdminAdoptionForm = props => {
 
   const handleApprove = (event) => {
     event.preventDefault()
-    // animalWithAdoptionForm.applicationStatus = "approved"
-    removeAPetAfterAdoptionApproval("approved")
-    removeAPetAfterAdoptionApprovalFromApplication("approved")
-    //removeAPetAfterAdoptionApprovalFromApplication()
-    //removeAPetAfterAdoptionApproval()
-    console.log(awaitAdoptionForm)
+    updatePetAdoptionStatus("approved")
+    updateApplicationStatis("approved")
+    setSubmitSuccessful(true)
   }
 
   const handleDeny = (event) => {
     event.preventDefault()
-    // animalWithAdoptionForm.applicationStatus = "denied"
-    removeAPetAfterAdoptionApproval("denied")
-    removeAPetAfterAdoptionApprovalFromApplication("denied")
-    console.log(animalWithAdoptionForm)
+    updatePetAdoptionStatus("denied")
+    updateApplicationStatis("denied")
     setSubmitSuccessful(false)
-    console.log("Deny")
   }
 
   if (submitSuccessful) {
     return (
         <div className="pet-box">
           <h1>Approved</h1>
-          <div >
+          <div className="pending-box">
           <form onSubmit={handleApprove}>
             <label><strong>Name: </strong>{props.ownerName}</label><br/>
             <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
             <label><strong>Email: </strong>{props.email}</label><br/>
-            <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
+            <label><strong>Application status: </strong>approved</label><br/>
             <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
             <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
             <label><strong>Application status: </strong>APPROVED</label><br/><br/><hr/>
@@ -151,12 +142,13 @@ const AdminAdoptionForm = props => {
   } else if (submitSuccessful == false) {
     return (
         <div className="pet-box">
-          <div >
+          <h1>Denied</h1>
+          <div className="pending-box">
             <form onSubmit={handleDeny}>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
               <label><strong>Email: </strong>{props.email}</label><br/>
-              <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
+              <label><strong>Application status: </strong>denied</label><br/>
               <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
               <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
               <label><strong>Application

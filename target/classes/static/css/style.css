@@ -155,6 +155,11 @@ form {
   color: #000;
 }
 
+.pet-box .pending-box {
+  display: block;
+  margin-left: 188px;
+}
+
 /*surrender form*/
 
 #surrender-form {
@@ -169,7 +174,6 @@ form {
 #surrender-form label {
   margin-left: 100px;
 }
-
 
 #surrender-form h2 {
   text-align: center;
@@ -271,7 +275,7 @@ form {
 }
 
 .deny  {
-  margin: 10px auto 10px 248px;
+  margin: 10px auto 10px 188px;
   border-style: outset;
   background-color: crimson;
   padding: 10px;

@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react"
 import {Redirect} from "react-router-dom";
+import AdminAdoptionForm from "./AdminAdoptionForm";
+import SurrenderForm from "./SurrenderForm";
+import EditSurrenderForm from "./EditSurrenderForm";
 
 const AdminSurrenderForm = props => {
   const [submitSuccessful, setSubmitSuccessful] = useState(null)
@@ -71,11 +74,14 @@ const AdminSurrenderForm = props => {
     console.log("Denied")
   }
 
-  const handleApprove = (event) => {
+  const handleEdit = (event) => {
     event.preventDefault()
     // addToPetsAfterApproval()
     // removeAPetAfterApprovalOrDenial()
+    setSubmitSuccessful(true)
     console.log(awaitApplication)
+    console.log(props.id + props.name + props.phoneNumber + props.email + this.props.homeStatus +
+          props.applicationStatus + props.petTypeId + props)
   }
 
   const handleDelete = (event) => {
@@ -86,31 +92,35 @@ const AdminSurrenderForm = props => {
 
   if (submitSuccessful) {
     return (
-        <div className="pet-box">
-          <div className="pending-box">
-            <form onSubmit={handleApprove}>
-              <label htmlFor="imgUrl"></label>
-              <img className="pet-img" src={props.surrender.petImageUrl} height={200} width={250}/><br/>
-              <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
-              <label><strong>Name: </strong>{props.ownerName}</label><br/>
-              <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
-              <label><strong>Email: </strong>{props.email}</label><br/>
-              <label htmlFor="name"><strong>Pet's name: </strong>{props.surrender.petName}</label><br/>
-              <input type="text" name="name" value={props.surrender.petName} hidden/>
-
-              <label htmlFor="age"><strong>Pet's Age: </strong>{props.surrender.petAge}</label><br/>
-              <input name="age" value={props.surrender.petAge} hidden/>
-              <label><strong>Application status: EDIT</strong></label><br/>
-              <a href="/pets" >Go to Home</a>
-            </form>
-          </div>
-        </div>
+        <EditSurrenderForm
+            key={props.id}
+            surrender={props.surrender}
+        />
+        // <div className="pet-box">
+        //   <div className="pending-box">
+        //     <form onSubmit={handleEdit}>
+        //       <label htmlFor="imgUrl"></label>
+        //       <img className="pet-img" src={props.surrender.petImageUrl} height={200} width={250}/><br/>
+        //       <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
+        //       <label><strong>Name: </strong>{props.ownerName}</label><br/>
+        //       <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
+        //       <label><strong>Email: </strong>{props.email}</label><br/>
+        //       <label htmlFor="name"><strong>Pet's name: </strong>{props.surrender.petName}</label><br/>
+        //       <input type="text" name="name" value={props.surrender.petName} hidden/>
+        //
+        //       <label htmlFor="age"><strong>Pet's Age: </strong>{props.surrender.petAge}</label><br/>
+        //       <input name="age" value={props.surrender.petAge} hidden/>
+        //       <label><strong>Application status: EDIT</strong></label><br/>
+        //       <a href="/pets" >Go to Home</a>
+        //     </form>
+        //   </div>
+        // </div>
     )
   } else if (submitSuccessful == false) {
     return (
         <div className="pet-box">
           <div className="pending-box">
-            <form onSubmit={handleApprove}>
+            <form onSubmit={handleEdit}>
               <label htmlFor="imgUrl"></label>
               <img src={props.surrender.petImageUrl} height={200} width={250}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
@@ -132,7 +142,7 @@ const AdminSurrenderForm = props => {
     return (
         <div className="pet-box">
           <div className="pending-box">
-            <form onSubmit={handleApprove}>
+            <form onSubmit={handleEdit}>
               <label htmlFor="imgUrl"></label>
               <img src={props.surrender.petImageUrl} height={200} width={250}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>

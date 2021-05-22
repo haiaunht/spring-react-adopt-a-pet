@@ -168,7 +168,6 @@ form {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 88px);
-  background-color: #f9f9f9;
 }
 
 #surrender-form label {
@@ -186,7 +185,7 @@ form {
   min-height: 550px;
   display: flex;
   z-index: 0;
-  /*background-color: aliceblue;*/
+  margin-left: 100px;
 }
 
 /*#surrender-form-box .input-box input[type="submit"]:hover {*/
@@ -214,9 +213,16 @@ form {
   width: 80%;
   border-radius: 100px;
   border: outset black;
+  margin-left: 300px;
 }
 
 label {
+  margin-left: 15px;
+  margin-top: 20px;
+  display: block;
+}
+
+#surrender-form-box label {
   margin-left: 15px;
   margin-top: 20px;
   display: block;
@@ -275,7 +281,7 @@ form {
 }
 
 .deny  {
-  margin: 10px auto 10px 188px;
+  margin: 10px auto 10px 178px;
   border-style: outset;
   background-color: crimson;
   padding: 10px;

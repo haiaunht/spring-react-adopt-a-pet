@@ -7,17 +7,44 @@ import Error from "./Error"
 
 const SurrenderForm = props => {
   const [submitSuccessful, setSubmitSuccessful] = useState(false)
-  const [newSurrender, setNewSurrender] = useState({
-    name: "",
-    phoneNumber: "",
-    email: "",
-    petName: "",
-    petAge: "",
-    petTypeId: "",
-    petImageUrl: "",
-    vaccinationStatus: "",
-    applicationStatus: "pending"
-  })
+
+    // const [newSurrender, setNewSurrender] = useState({
+    //   name: props.surrender.name,
+    //   phoneNumber: props.surrender.phoneNumber,
+    //   email: props.surrender.email,
+    //   petName: props.surrender.petName,
+    //   petAge: props.surrender.petAge,
+    //   petTypeId: props.surrender.petTypeId,
+    //   petImageUrl: props.surrender.petImageUrl,
+    //   vaccinationStatus: props.surrender.vaccinationStatus,
+    //   applicationStatus: "pending"
+    // })
+
+    const [newSurrender, setNewSurrender] = useState({
+      name: "",
+      phoneNumber: "",
+      email: "",
+      petName: "",
+      petAge: "",
+      petTypeId: "",
+      petImageUrl: "",
+      vaccinationStatus: "",
+      applicationStatus: "pending"
+    })
+
+    if (props.surrender) {
+      newSurrender.name = props.surrender.name
+      newSurrender.phoneNumber = props.surrender.phoneNumber
+      newSurrender.email = props.surrender.email
+      newSurrender.petName = props.surrender.petName
+      newSurrender.petAge = props.surrender.petAge
+      newSurrender.petTypeId = props.surrender.petTypeId
+      newSurrender.petImageUrl = props.surrender.petImageUrl
+      newSurrender.vaccinationStatus = props.surrender.vaccinationStatus
+      newSurrender.vaccinationStatus = props.surrender.adoptionStatus
+    }
+  console.log(newSurrender)
+
   const [newAdoptablePet, setNewAdoptablePet] = useState({
     name: "",
     imgUrl: "",
@@ -130,7 +157,6 @@ const SurrenderForm = props => {
       newAdoptablePet.adoptionStory = "just join form surrender department. (or should i add story column in surrender)"
       newAdoptablePet.adoptionStatus = "yes"
       newAdoptablePet.petType.id = newSurrender.petTypeId
-
       console.log("Before persisting: " + newAdoptablePet)
       addNewSurrender()
       addNewAdoptablePet()
@@ -140,8 +166,6 @@ const SurrenderForm = props => {
   }
 
   if (submitSuccessful) {
-    // return <Redirect to="/adoptions" />
-    // return <Redirect to="/surrender" />
     return (
         <SuccessfulSubmission submitSuccessful={submitSuccessful} userName={newSurrender.name} />
     )

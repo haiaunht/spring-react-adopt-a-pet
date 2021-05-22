@@ -15,7 +15,7 @@ const PendingApplications = props => {
         throw error
       }
       const body = await response.json()
-      console.log(body.content)
+      //console.log(body.content)
       setSurrenderForms(body.content)
     } catch (err) {
       console.log(`Error in fetch: ${err.message}`)

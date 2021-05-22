@@ -210,6 +210,7 @@ form {
   min-height: 550px;
   display: flex;
   z-index: 0;
+  margin-left: 100px;
 }
 
 #surrender-form-box .input-box input[type="submit"]:hover {
@@ -234,12 +235,14 @@ form {
   flex-wrap: wrap;
   padding-top: 30px;
   width: 80%;
+  margin-left: 200px;
 }
 
-/*label {*/
-/*  margin: 20px auto 20px;*/
-/*  display: block;*/
-/*}*/
+#surrender-form-box label {
+  margin-left: 15px;
+  margin-top: 20px;
+  display: block;
+}
 
 form {
   width: 70%;
@@ -304,7 +307,7 @@ h2 {
 }
 
 .deny  {
-  margin: 10px auto 10px 188px;
+  margin: 10px auto 10px 178px;
   border-style: outset;
   background-color: crimson;
   padding: 10px;

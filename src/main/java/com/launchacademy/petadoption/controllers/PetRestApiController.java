@@ -27,34 +27,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class PetRestApiController {
   @Autowired
   private PetTypeService petTypeService;
-  private PetTypeRepository petTypeRepository;
-  private AdoptablePetRepository adoptPetRepo;
-
   @Autowired
   private AdoptablePetService adoptablePetService;
 
-//  @Autowired
-//  public PetRestApiController(PetTypeService petTypeService,
-//      PetTypeRepository petTypeRepository, AdoptablePetRepository
-//       adoptPetRepo, AdoptablePetService adoptablePetService) {
-//    this.petTypeService = petTypeService;
-//    this.petTypeRepository = petTypeRepository;
-//    this.adoptPetRepo = adoptPetRepo;
-//    this.adoptablePetService = adoptablePetService;
-//  }
-
   @GetMapping
   public Page<PetType> listAll(Pageable pageable) {
-    //return petTypeRepository.findAll(pageable);
     return petTypeService.findAll(pageable);
   }
 
   @GetMapping("/{type}")
   public PetType getType(@PathVariable String type) {
-    //return petTypeRepository.findPetTypeBy(type);
     return petTypeService.findPetTypeBy(type);
   }
-
 
   @GetMapping("/{type}/{id}")
   public AdoptablePet getPetIdOfPetType(@PathVariable String type, @PathVariable Integer id) {
@@ -62,18 +46,15 @@ public class PetRestApiController {
     return adoptablePetService.findById(id).orElseThrow(() -> new PetTypeNotFoundException());
   }
 
-  //just added
   @PostMapping("/delete/{id}")
   public void delete(@PathVariable Integer id) {
-    adoptPetRepo.deleteById(id);
+    adoptablePetService.deleteById(id);
   }
 
-  //just added
   @PostMapping("/update/{id}/{status}")
   public void update(@PathVariable Integer id, @PathVariable String status) {
     adoptablePetService.update(id, status);
   }
-
 
   @NoArgsConstructor
   private class PetTypeNotFoundException extends RuntimeException {};
@@ -88,14 +69,4 @@ public class PetRestApiController {
     }
   }
 
-  ////DTO not show list of petType.adoptableList
-//  @GetMapping
-//  public Page<PetTypeDto> getListOfPetTypes(Pageable pageable) {
-//    return petTypeService.findAll(pageable);
-//  }
-
-//  @GetMapping("/{type}")
-//  public PetTypeDto getType(@PathVariable String type) {
-//    return petTypeService.findByType(type).get();
-//  }
 }

@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 const AdminSurrenderForm = props => {
   const [submitSuccessful, setSubmitSuccessful] = useState(null)
   const {applicationStatus, email,id, name,  petAge,  petImageUrl,petName,petTypeId,phoneNumber,vaccinationStatus} = props.surrender
+  const [delTask, setDelTask] = useState(false)
 
   const [awaitApplication, setAwaitApplication]  = useState({
     name : petName,
@@ -11,7 +12,7 @@ const AdminSurrenderForm = props => {
     age : petAge,
     vaccinationStatus: vaccinationStatus,
     adoptionStory : "just join from Surrender shelter",
-    adoptionStatus : "false",
+    adoptionStatus : "null",
     petType: {id: petTypeId}
   })
 
@@ -41,6 +42,10 @@ const AdminSurrenderForm = props => {
     console.log("Approved")
   }
 
+  const editApplication = async () => {
+
+  }
+
   //if denied, remove from surrender_pets table
   const removeAPetAfterApprovalOrDenial = async () => {
     const awaitPetId = props.surrender.id
@@ -68,17 +73,15 @@ const AdminSurrenderForm = props => {
 
   const handleApprove = (event) => {
     event.preventDefault()
-    addToPetsAfterApproval()
-    removeAPetAfterApprovalOrDenial()
+    // addToPetsAfterApproval()
+    // removeAPetAfterApprovalOrDenial()
     console.log(awaitApplication)
   }
 
-  const handleDeny = (event) => {
+  const handleDelete = (event) => {
     event.preventDefault()
     removeAPetAfterApprovalOrDenial()
     setSubmitSuccessful(false)
-    console.log(awaitApplication)
-    console.log("Deny")
   }
 
   if (submitSuccessful) {
@@ -87,7 +90,7 @@ const AdminSurrenderForm = props => {
           <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
-              <img className="pet-img" src={props.surrender.petImageUrl} height={300} width={400}/><br/>
+              <img className="pet-img" src={props.surrender.petImageUrl} height={200} width={250}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
@@ -97,7 +100,7 @@ const AdminSurrenderForm = props => {
 
               <label htmlFor="age"><strong>Pet's Age: </strong>{props.surrender.petAge}</label><br/>
               <input name="age" value={props.surrender.petAge} hidden/>
-              <label><strong>Application status: APPROVED</strong></label><br/>
+              <label><strong>Application status: EDIT</strong></label><br/>
               <a href="/pets" >Go to Home</a>
             </form>
           </div>
@@ -109,7 +112,7 @@ const AdminSurrenderForm = props => {
           <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
-              <img src={props.surrender.petImageUrl} height={300} width={400}/><br/>
+              <img src={props.surrender.petImageUrl} height={200} width={250}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
@@ -119,7 +122,7 @@ const AdminSurrenderForm = props => {
 
               <label htmlFor="age"><strong>Pet's Age: </strong>{props.surrender.petAge}</label><br/>
               <input name="age" value={props.surrender.petAge} hidden/>
-              <label><strong>Application status: DENY</strong></label><br/>
+              <label><strong>Application status: DELETE</strong></label><br/>
               <a href="/pets" >Go to Home</a>
             </form>
           </div>
@@ -131,7 +134,7 @@ const AdminSurrenderForm = props => {
           <div className="pending-box">
             <form onSubmit={handleApprove}>
               <label htmlFor="imgUrl"></label>
-              <img src={props.surrender.petImageUrl} height={300} width={400}/><br/>
+              <img src={props.surrender.petImageUrl} height={200} width={250}/><br/>
               <input name="imgUrl" value={props.surrender.petImageUrl} hidden/>
               <label><strong>Name: </strong>{props.ownerName}</label><br/>
               <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
@@ -143,11 +146,18 @@ const AdminSurrenderForm = props => {
               <input name="age" value={props.surrender.petAge} hidden/>
               <label><strong>Application status: </strong>{props.surrender.applicationStatus}</label><br/>
 
-              <input className="approve" type="submit" value="Approve" />
+              <input className="approve" type="submit" value="Edit" />
 
             </form>
-            <form onSubmit={handleDeny} className="deny-form">
-              <input className="deny"  type="submit" value="Deny"/>
+            {/*<form onSubmit={handleDelete} className="deny-form">*/}
+            <form className="deny-form">
+              <input className="deny"  type="submit" value="Delete"
+                     onClick={() => {
+                       const confirmBox = window.confirm("Are you really want to delete this application?")
+                       if (confirmBox !== false) {
+                         handleDelete(event)
+                       }
+                     }}/>
             </form>
           </div>
         </div>

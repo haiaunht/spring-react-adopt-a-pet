@@ -14,24 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PetTypeService {
   private PetTypeRepository petTypeRepo;
-  private PetTypeMapper petTypeMapper;
 
   @Autowired
-  public PetTypeService(PetTypeRepository petTypeRepo,
-      PetTypeMapper petTypeMapper) {
+  public PetTypeService(PetTypeRepository petTypeRepo) {
     this.petTypeRepo = petTypeRepo;
-    this.petTypeMapper = petTypeMapper;
   }
-//
-//  public Optional<PetTypeDto> findByType(String type) {
-//    Optional<PetType> pet = Optional.ofNullable(petTypeRepo.findPetTypeBy(type));
-//    return Optional.ofNullable(petTypeMapper.petTypeToPetTypeDto(pet.get()));
-//  }
-//
-//  public Page<PetTypeDto> findAll(Pageable pageable) {
-//    Page<PetType> page = petTypeRepo.findAll(pageable);
-//    return new PageImpl<>(petTypeMapper.petTypesToPetTypeDtos(page.getContent()), pageable, page.getTotalElements());
-//  }
 
   public PetType findPetTypeBy(String type) {
     return petTypeRepo.findPetTypeBy(type);

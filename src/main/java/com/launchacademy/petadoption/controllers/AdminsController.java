@@ -4,6 +4,8 @@ import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.SurrenderPet;
 import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
 import com.launchacademy.petadoption.repositories.SurrenderPetRepository;
+import com.launchacademy.petadoption.services.AdoptablePetService;
+import com.launchacademy.petadoption.services.SurrenderPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,28 +20,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/admin")
 public class AdminsController {
-  @Autowired
-  private SurrenderPetRepository surrenderPetRepository;
-  @Autowired
-  private AdoptablePetRepository adoptRepo;
 
-  //call all of surrender forms to render
-
-  //render a surrender by id to edit
-  //update an specific surrender form to pending -> approve or denied
+  @Autowired
+  private SurrenderPetService surrenderPetService;
+  @Autowired
+  private AdoptablePetService adoptablePetService;
 
   @GetMapping("/pending_applications")
   public Page<SurrenderPet> getListOfSurrenderPet(Pageable pageable) {
-    return surrenderPetRepository.findAll(pageable);
+    return surrenderPetService.findAll(pageable);
   }
 
   @PostMapping
   public AdoptablePet create(@RequestBody AdoptablePet adoptablePet) {
-    return adoptRepo.save(adoptablePet);
+    return adoptablePetService.save(adoptablePet);
   }
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody SurrenderPet surrenderPet, @PathVariable Integer id) {
-    surrenderPetRepository.deleteById(id);
+    surrenderPetService.deleteById(id);
   }
 }

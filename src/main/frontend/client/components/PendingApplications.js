@@ -46,7 +46,7 @@ const PendingApplications = props => {
       <div className="content">
         <div className="max-width-800">
           <h1>=====================</h1>
-          <h2>Surrender Form Awaits:</h2>
+          <h2>Your application status:</h2>
           {allSurrenderForms}
         </div>
       </div>

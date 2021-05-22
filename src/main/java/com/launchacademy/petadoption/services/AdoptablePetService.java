@@ -20,18 +20,14 @@ import org.springframework.stereotype.Service;
 public class AdoptablePetService {
   private AdoptablePetRepository adoptablePetRepo;
   private AdoptableMapper adoptableMapper;
-  private PetTypeService petTypeService;
 
   @Autowired
   public AdoptablePetService(
       AdoptablePetRepository adoptablePetRepo,
-      AdoptableMapper adoptableMapper,
-      PetTypeService petTypeService) {
+      AdoptableMapper adoptableMapper) {
     this.adoptablePetRepo = adoptablePetRepo;
     this.adoptableMapper = adoptableMapper;
-    this.petTypeService = petTypeService;
   }
-
 
   public Page<AdoptablePetDto> findAll(Pageable pageable) {
     Page<AdoptablePet> page = adoptablePetRepo.findAll(pageable);
@@ -48,14 +44,11 @@ public class AdoptablePetService {
     adoptablePetRepo.save(test);
   }
 
-//  public List<AdoptablePet> findAllByStatus(String type) {
-//    List<AdoptablePet> result = new ArrayList<>();
-//    PetType pet = petTypeService.findPetTypeBy(type);
-//    for (AdoptablePet a : pet.getAdoptablePets()) {
-//      if (a.getAdoptionStatus().equals("approved") || a.getAdoptionStatus().equals("denied")) {
-//        result.add(a);
-//      }
-//    }
-//    return result;
-//  }
+  public AdoptablePet save(AdoptablePet adoptablePet) {
+    return adoptablePetRepo.save(adoptablePet);
+  }
+
+  public void deleteById(Integer id) {
+    adoptablePetRepo.deleteById(id);
+  }
 }

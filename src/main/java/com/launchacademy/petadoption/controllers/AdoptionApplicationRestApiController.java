@@ -33,11 +33,6 @@ public class AdoptionApplicationRestApiController {
     return adoptionApplicationRepo.findAll(pageable);
   }
 
-//  @PostMapping
-//  public AdoptionApplication create(@RequestBody AdoptionApplication adoptionApplication) {
-//    return adoptionApplicationRepo.save(adoptionApplication);
-//  }
-
   @PostMapping
   public ResponseEntity create(@Valid @RequestBody AdoptionApplication adoptionApplication, BindingResult bindingResult) {
     if(bindingResult.hasErrors()) {
@@ -48,7 +43,6 @@ public class AdoptionApplicationRestApiController {
     }
   }
 
-  //just added
   @PostMapping("/update/{id}/{status}")
   public void update(@PathVariable Integer id, @PathVariable String status) {
     service.update(id, status);
@@ -56,7 +50,6 @@ public class AdoptionApplicationRestApiController {
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
-//    adoptionApplicationRepo.deleteById(id);
     adoptionApplicationRepo.delete(adoptionApplication);
   }
 }

@@ -27,8 +27,10 @@ const EditSurrenderForm = props => {
   const [redirect, setRedirect] = useState(false)
 
   const updateSurrenderForm = async () => {
+    const id = props.surrender.id
+    console.log(id)
     try {
-      const response = await fetch("/api/v1/surrender/update", {
+      const response = await fetch(`/api/v1/surrender/update/${id}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"

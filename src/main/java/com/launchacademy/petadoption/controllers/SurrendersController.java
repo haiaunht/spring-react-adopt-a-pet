@@ -3,6 +3,7 @@ package com.launchacademy.petadoption.controllers;
 import com.launchacademy.petadoption.models.SurrenderPet;
 import com.launchacademy.petadoption.repositories.SurrenderPetRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,11 +30,6 @@ public class SurrendersController {
     return surrenderPetRepository.findAll(pageable);
   }
 
-//  @PostMapping
-//  public SurrenderPet create(@RequestBody SurrenderPet surrenderPet) {
-//    return surrenderPetRepository.save(surrenderPet);
-//  }
-
   @PostMapping
   public ResponseEntity create(@Valid @RequestBody SurrenderPet surrenderPet, BindingResult bindingResult) {
     if(bindingResult.hasErrors()) {
@@ -45,9 +40,23 @@ public class SurrendersController {
     }
   }
 
+  @PostMapping("/update/{id}")
+  public void update(@PathVariable Integer id, @RequestBody SurrenderPet surrenderPet) {
+    Optional<SurrenderPet> pet = surrenderPetRepository.findById(id);
+    pet.get().setName(surrenderPet.getName());
+    pet.get().setPhoneNumber(surrenderPet.getPhoneNumber());
+    pet.get().setEmail(surrenderPet.getEmail());
+    pet.get().setPetName(surrenderPet.getPetName());
+    pet.get().setPetAge(surrenderPet.getPetAge());
+    pet.get().setPetImageUrl(surrenderPet.getPetImageUrl());
+    pet.get().setVaccinationStatus(surrenderPet.getVaccinationStatus());
+    pet.get().setApplicationStatus(surrenderPet.getApplicationStatus());
+    pet.get().setPetTypeId(surrenderPet.getPetTypeId());
+    surrenderPetRepository.save(pet.get());
+  }
+
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody SurrenderPet surrenderPet, @PathVariable Integer id) {
-//    surrenderPetRepository.deleteById(id);
     surrenderPetRepository.delete(surrenderPet);
   }
 }

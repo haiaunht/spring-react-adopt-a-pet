@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,7 +60,6 @@ public class AdoptablePet {
     @Column(name = "type_id", nullable = false, insertable = false, updatable = false)
     private Integer type_id;
 
-    //@ManyToOne(fetch = FetchType.EAGER)
     @ManyToOne
     @JoinColumn(name = "type_id")
     @JsonIgnoreProperties("adoptablePets")

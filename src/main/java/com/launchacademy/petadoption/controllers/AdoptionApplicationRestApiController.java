@@ -1,7 +1,6 @@
 package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.models.AdoptionApplication;
-import com.launchacademy.petadoption.repositories.AdoptionApplicationRepository;
 import com.launchacademy.petadoption.services.AdoptionApplicationService;
 import java.util.List;
 import javax.validation.Valid;
@@ -23,14 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdoptionApplicationRestApiController {
 
   @Autowired
-  private AdoptionApplicationRepository adoptionApplicationRepo;
-
-  @Autowired
   private AdoptionApplicationService service;
 
   @GetMapping
   public Page<AdoptionApplication> getListOfAdoptionApplications(Pageable pageable) {
-    return adoptionApplicationRepo.findAll(pageable);
+    return service.findAll(pageable);
   }
 
   @PostMapping
@@ -39,7 +35,7 @@ public class AdoptionApplicationRestApiController {
       return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
     }
     else {
-      return new ResponseEntity<AdoptionApplication>(adoptionApplicationRepo.save(adoptionApplication), HttpStatus.CREATED);
+      return new ResponseEntity<AdoptionApplication>(service.save(adoptionApplication), HttpStatus.CREATED);
     }
   }
 
@@ -50,6 +46,31 @@ public class AdoptionApplicationRestApiController {
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
-    adoptionApplicationRepo.delete(adoptionApplication);
+    service.delete(adoptionApplication);
   }
+
+//  @GetMapping
+//  public Page<AdoptionApplication> getListOfAdoptionApplications(Pageable pageable) {
+//    return adoptionApplicationRepo.findAll(pageable);
+//  }
+//
+//  @PostMapping
+//  public ResponseEntity create(@Valid @RequestBody AdoptionApplication adoptionApplication, BindingResult bindingResult) {
+//    if(bindingResult.hasErrors()) {
+//      return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
+//    }
+//    else {
+//      return new ResponseEntity<AdoptionApplication>(adoptionApplicationRepo.save(adoptionApplication), HttpStatus.CREATED);
+//    }
+//  }
+//
+//  @PostMapping("/update/{id}/{status}")
+//  public void update(@PathVariable Integer id, @PathVariable String status) {
+//    service.update(id, status);
+//  }
+//
+//  @PostMapping("/delete/{id}")
+//  public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
+//    adoptionApplicationRepo.delete(adoptionApplication);
+//  }
 }

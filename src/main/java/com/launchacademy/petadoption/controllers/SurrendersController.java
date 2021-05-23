@@ -1,7 +1,7 @@
 package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.models.SurrenderPet;
-import com.launchacademy.petadoption.repositories.SurrenderPetRepository;
+import com.launchacademy.petadoption.services.SurrenderPetService;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SurrendersController {
 
   @Autowired
-  private SurrenderPetRepository surrenderPetRepository;
+  private SurrenderPetService surrenderPetService;
 
   @GetMapping("/new")
   public Page<SurrenderPet> getListOfSurrenderPet(Pageable pageable) {
-    return surrenderPetRepository.findAll(pageable);
+    return surrenderPetService.findAll(pageable);
   }
 
   @PostMapping
@@ -36,13 +36,13 @@ public class SurrendersController {
       return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
     }
     else {
-      return new ResponseEntity<SurrenderPet>(surrenderPetRepository.save(surrenderPet), HttpStatus.CREATED);
+      return new ResponseEntity<SurrenderPet>(surrenderPetService.save(surrenderPet), HttpStatus.CREATED);
     }
   }
 
   @PostMapping("/update/{id}")
   public void update(@PathVariable Integer id, @RequestBody SurrenderPet surrenderPet) {
-    Optional<SurrenderPet> pet = surrenderPetRepository.findById(id);
+    Optional<SurrenderPet> pet = surrenderPetService.findById(id);
     pet.get().setName(surrenderPet.getName());
     pet.get().setPhoneNumber(surrenderPet.getPhoneNumber());
     pet.get().setEmail(surrenderPet.getEmail());
@@ -52,11 +52,12 @@ public class SurrendersController {
     pet.get().setVaccinationStatus(surrenderPet.getVaccinationStatus());
     pet.get().setApplicationStatus(surrenderPet.getApplicationStatus());
     pet.get().setPetTypeId(surrenderPet.getPetTypeId());
-    surrenderPetRepository.save(pet.get());
+    surrenderPetService.save(pet.get());
   }
 
   @PostMapping("/delete/{id}")
   public void delete(@RequestBody SurrenderPet surrenderPet, @PathVariable Integer id) {
-    surrenderPetRepository.delete(surrenderPet);
+    surrenderPetService.delete(surrenderPet);
   }
+
 }

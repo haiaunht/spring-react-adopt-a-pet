@@ -2,11 +2,8 @@ package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.PetType;
-import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
-import com.launchacademy.petadoption.repositories.PetTypeRepository;
 import com.launchacademy.petadoption.services.AdoptablePetService;
 import com.launchacademy.petadoption.services.PetTypeService;
-import java.util.List;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/pets")
 public class PetRestApiController {
+
   @Autowired
   private PetTypeService petTypeService;
   @Autowired

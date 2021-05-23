@@ -9,7 +9,4 @@ public class HomeController {
     public String forward() {
         return "forward:/";
     }
-//    public String forward() {
-//        return "forward:/index.html";
-//    }
 }

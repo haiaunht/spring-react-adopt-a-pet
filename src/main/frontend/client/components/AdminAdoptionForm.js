@@ -48,14 +48,12 @@ const AdminAdoptionForm = props => {
 
   const updateApplicationStatis = async (status) => {
     const applicationId = props.applicationId
-    console.log(applicationId)
     if (status === "approved") {
       setSubmitSuccessful(true)
     } else if (status === "denied") {
       setSubmitSuccessful(false)
     }
     try {
-      //const response = await fetch(`/api/v1/adoptions-applications/delete/${applicationId}`, {
       const response = await fetch(`/api/v1/adoptions-applications/update/${applicationId}/${status}`, {
         method: "POST",
         headers: new Headers({
@@ -69,26 +67,19 @@ const AdminAdoptionForm = props => {
         throw error
       } else {
         const body = await response.json()
-        console.log("Adoption application approved. Remove from adoptable_applications")
       }
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
-
   }
 
-  //need to convert to adoptable_pets object to remove
   const updatePetAdoptionStatus = async (status) => {
-    console.log(status)
-    console.log(animalWithAdoptionForm)
     try {
-      // const response = await fetch(`/api/v1/pets/delete/${animalId}`, {
       const response = await fetch(`/api/v1/pets/update/${animalId}/${status}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        // body: JSON.stringify(awaitAdoptionForm)
         body: JSON.stringify(animalWithAdoptionForm)
       })
       if (!response.ok) {
@@ -101,7 +92,6 @@ const AdminAdoptionForm = props => {
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
-    console.log("Adoption approved. Remove from adoptable_pets")
   }
 
   useEffect(() => {
@@ -124,60 +114,59 @@ const AdminAdoptionForm = props => {
 
   if (submitSuccessful) {
     return (
-        <div className="pet-box">
-          <h1>Approved</h1>
-          <div className="pending-box">
-          <form onSubmit={handleApprove}>
+      <div className="pet-box">
+        <h1>Approved</h1>
+        <div className="pending-box">
+        <form onSubmit={handleApprove}>
+          <label><strong>Name: </strong>{props.ownerName}</label><br/>
+          <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
+          <label><strong>Email: </strong>{props.email}</label><br/>
+          <label><strong>Application status: </strong>approved</label><br/>
+          <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
+          <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
+          <label><strong>Application status: </strong>APPROVED</label><br/><br/><hr/>
+        </form>
+      </div>
+    </div>
+    )
+  } else if (submitSuccessful == false) {
+    return (
+      <div className="pet-box">
+        <h1>Denied</h1>
+        <div className="pending-box">
+          <form onSubmit={handleDeny}>
             <label><strong>Name: </strong>{props.ownerName}</label><br/>
             <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
             <label><strong>Email: </strong>{props.email}</label><br/>
-            <label><strong>Application status: </strong>approved</label><br/>
+            <label><strong>Application status: </strong>denied</label><br/>
             <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
             <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
-            <label><strong>Application status: </strong>APPROVED</label><br/><br/><hr/>
+            <label><strong>Application
+              status: </strong>DENY</label><br/>
           </form>
         </div>
       </div>
     )
-  } else if (submitSuccessful == false) {
-    return (
-        <div className="pet-box">
-          <h1>Denied</h1>
-          <div className="pending-box">
-            <form onSubmit={handleDeny}>
-              <label><strong>Name: </strong>{props.ownerName}</label><br/>
-              <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
-              <label><strong>Email: </strong>{props.email}</label><br/>
-              <label><strong>Application status: </strong>denied</label><br/>
-              <label><strong>Pet's name: </strong>{animalWithAdoptionForm.name}</label><br/>
-              <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
-              <label><strong>Application
-                status: </strong>DENY</label><br/>
-            </form>
-          </div>
-        </div>
-    )
   } else {
     return (
-        <div className="pet-box">
-          <div className="pending-box">
-            <form onSubmit={handleApprove}>
-              <label><strong>Name: </strong>{props.ownerName}</label><br/>
-              <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
-              <label><strong>Email: </strong>{props.email}</label><br/>
-              <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
-              <label><strong>Pet's name:  </strong>{animalWithAdoptionForm.name}</label><br/>
-              <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
-              <input className="approve" type="submit" value="Approve" />
-            </form>
-            <form onSubmit={handleDeny} className="deny-form">
-              <input type="submit" className="deny" value="Deny"/>
-            </form>
-          </div>
+      <div className="pet-box">
+        <div className="pending-box">
+          <form onSubmit={handleApprove}>
+            <label><strong>Name: </strong>{props.ownerName}</label><br/>
+            <label><strong>Contact: </strong>{props.phoneNumber}</label><br/>
+            <label><strong>Email: </strong>{props.email}</label><br/>
+            <label><strong>Application status: </strong>{props.applicationStatus}</label><br/>
+            <label><strong>Pet's name:  </strong>{animalWithAdoptionForm.name}</label><br/>
+            <label><img className="images thumbnail" src={animalWithAdoptionForm.imgUrl} ></img></label>
+            <input className="approve" type="submit" value="Approve" />
+          </form>
+          <form onSubmit={handleDeny} className="deny-form">
+            <input type="submit" className="deny" value="Deny"/>
+          </form>
         </div>
+      </div>
     )
   }
-
 }
 
 export default AdminAdoptionForm

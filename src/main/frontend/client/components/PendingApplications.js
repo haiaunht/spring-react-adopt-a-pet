@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react"
-import AdminForm from "./AdminAdoptionForm"
-import AdminSurrenderForm from "./AdminSurrenderForm"
+import UserEditSurrenderForm from "./UserEditSurrenderForm"
 
 const PendingApplications = props => {
-  const [adoptForms, setAdoptForms] = useState([])
   const [surrenderForms, setSurrenderForms] = useState([])
 
   const fetchAllSurrender = async () => {
@@ -28,7 +26,7 @@ const PendingApplications = props => {
 
   const allSurrenderForms = surrenderForms.map( form => {
     return (
-      <AdminSurrenderForm
+      <UserEditSurrenderForm
         key={form.id}
         ownerName={form.name}
         phoneNumber={form.phoneNumber}
@@ -45,7 +43,6 @@ const PendingApplications = props => {
     <div className="container">
       <div className="content">
         <div className="max-width-800">
-          <h1>=====================</h1>
           <h2>Your application status:</h2>
           {allSurrenderForms}
         </div>

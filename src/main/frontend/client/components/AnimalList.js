@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import AnimalTile from "./AnimalTile.js"
 
 const AnimalList = props => {
-  // const [animalType, setAnimalType] = useState({ adoptablePets: [] })
   const [animalType, setAnimalType] = useState([])
   const [type, setType] = useState("")
 
@@ -27,19 +26,18 @@ const AnimalList = props => {
     fetchAnimalType()
   }, [props])
 
-  // const petList = animalType.adoptablePets.map(animal => {
   const petList = animalType.map(animal => {
     if (animal.adoptionStatus === "null" || animal.adoptionStatus === "denied") {
       return (
-          <AnimalTile
-              key={animal.id}
-              id={animal.id}
-              name={animal.name}
-              age={animal.age}
-              vaccinationStatus={animal.vaccinationStatus}
-              imgUrl={animal.imgUrl}
-              type={type}
-          />
+        <AnimalTile
+            key={animal.id}
+            id={animal.id}
+            name={animal.name}
+            age={animal.age}
+            vaccinationStatus={animal.vaccinationStatus}
+            imgUrl={animal.imgUrl}
+            type={type}
+        />
       )
     }
 

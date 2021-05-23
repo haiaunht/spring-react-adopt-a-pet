@@ -2,14 +2,11 @@ package com.launchacademy.petadoption.controllers;
 
 import com.launchacademy.petadoption.models.AdoptablePet;
 import com.launchacademy.petadoption.models.SurrenderPet;
-import com.launchacademy.petadoption.repositories.AdoptablePetRepository;
-import com.launchacademy.petadoption.repositories.SurrenderPetRepository;
 import com.launchacademy.petadoption.services.AdoptablePetService;
 import com.launchacademy.petadoption.services.SurrenderPetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

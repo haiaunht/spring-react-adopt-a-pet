@@ -14,7 +14,6 @@ const AdminReviewSurrenderForm = props => {
         throw error
       }
       const body = await response.json()
-      //console.log(body.content)
       setAdminSurrenderForms(body.content)
     } catch (err) {
       console.log(`Error in fetch: ${err.message}`)
@@ -27,29 +26,28 @@ const AdminReviewSurrenderForm = props => {
 
   const allSurrenderForms = adminSurrenderForms.map( form => {
     return (
-        <AdminApproveOrDenySurrender
-            key={form.id}
-            ownerName={form.name}
-            phoneNumber={form.phoneNumber}
-            email={form.email}
-            homeStatus={form.homeStatus}
-            applicationStatus={form.applicationStatus}
-            surrender={form}
-            typeId={form.petTypeId}
-        />
+      <AdminApproveOrDenySurrender
+          key={form.id}
+          ownerName={form.name}
+          phoneNumber={form.phoneNumber}
+          email={form.email}
+          homeStatus={form.homeStatus}
+          applicationStatus={form.applicationStatus}
+          surrender={form}
+          typeId={form.petTypeId}
+      />
     )
   })
 
   return (
-      <div className="container">
-        <div className="content">
-          <div className="max-width-800">
-            <h1>=====================</h1>
-            <h2>Your application status:</h2>
-            {allSurrenderForms}
-          </div>
+    <div className="container">
+      <div className="content">
+        <div className="max-width-800">
+          <h2>Your application status:</h2>
+          {allSurrenderForms}
         </div>
       </div>
+    </div>
   )
 }
 

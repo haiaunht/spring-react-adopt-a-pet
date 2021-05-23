@@ -25,32 +25,32 @@ const Admin = props => {
 
   const allAdoptForms = adoptForms.map( form => {
     return (
-        <div>
-          <AdminAdoptionForm
-              key={form.id}
-              applicationId={form.id}
-              ownerName={form.name}
-              phoneNumber={form.phoneNumber}
-              email={form.email}
-              homeStatus={form.homeStatus}
-              applicationStatus={form.applicationStatus}
-              form={form}
-          />
-        </div>
+      <div>
+        <AdminAdoptionForm
+          key={form.id}
+          applicationId={form.id}
+          ownerName={form.name}
+          phoneNumber={form.phoneNumber}
+          email={form.email}
+          homeStatus={form.homeStatus}
+          applicationStatus={form.applicationStatus}
+          form={form}
+        />
+      </div>
     )
   })
 
 
   return (
-      <div className="container">
-        <div className="content">
-          <div className="max-width-800">
-            <h1>Welcome, Admin!</h1>
-            <h2>Adoption Form Awaits:</h2>
-            {allAdoptForms}
-          </div>
+    <div className="container">
+      <div className="content">
+        <div className="max-width-800">
+          <h1>Welcome, Admin!</h1>
+          <h2>Adoption Form Awaits:</h2>
+          {allAdoptForms}
         </div>
       </div>
+    </div>
   )
 }
 

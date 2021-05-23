@@ -8,9 +8,7 @@ import TypeList from "./TypeList.js"
 import AnimalList from "./AnimalList.js"
 import AnimalShow from "./AnimalShow.js"
 import SurrenderForm from "./SurrenderForm"
-import SuccessTile from "./SuccessTile.js"
 import NavBar from "./NavBar.js"
-import AdoptionForm from "./AdoptionForm";
 import PendingApplications from "./PendingApplications.js";
 import Admin from "./Admin.js";
 import AdminReviewSurrenderForm from "./AdminReviewSurrenderForm";

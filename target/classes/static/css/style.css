@@ -293,3 +293,7 @@ form {
   display: block;
   margin: auto;
 }
+
+.edit-success {
+  margin-top: 200px;
+}

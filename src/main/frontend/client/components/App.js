@@ -30,7 +30,6 @@ const App = props => {
             {/*<Route exact path="/adoptions" component={SuccessTile} />*/}
             {/*<Route exact path="/adoptions/new" component={AdoptionForm} />*/}
             <Route exact path="/adoptions/new" component={SurrenderForm} />
-            {/*<Route exact path="/surrender/new" component={SurrenderForm} />*/}
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/pending_applications" component={PendingApplications} />
 

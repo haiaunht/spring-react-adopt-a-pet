@@ -79,9 +79,6 @@ const AdminSurrenderForm = props => {
     // addToPetsAfterApproval()
     // removeAPetAfterApprovalOrDenial()
     setSubmitSuccessful(true)
-    console.log(awaitApplication)
-    console.log(props.id + props.name + props.phoneNumber + props.email + this.props.homeStatus +
-          props.applicationStatus + props.petTypeId + props)
   }
 
   const handleDelete = (event) => {

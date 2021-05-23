@@ -13,6 +13,7 @@ import NavBar from "./NavBar.js"
 import AdoptionForm from "./AdoptionForm";
 import PendingApplications from "./PendingApplications.js";
 import Admin from "./Admin.js";
+import AdminReviewSurrenderForm from "./AdminReviewSurrenderForm";
 
 const App = props => {
   return (
@@ -27,10 +28,9 @@ const App = props => {
             <Route exact path="/pets" component={TypeList} />
             <Route exact path="/pets/:type" component={AnimalList} />
             <Route exact path="/pets/:type/:id" component={AnimalShow} />
-            {/*<Route exact path="/adoptions" component={SuccessTile} />*/}
-            {/*<Route exact path="/adoptions/new" component={AdoptionForm} />*/}
             <Route exact path="/adoptions/new" component={SurrenderForm} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/admin/surrender-review" component={AdminReviewSurrenderForm} />
             <Route exact path="/pending_applications" component={PendingApplications} />
 
           </Switch>

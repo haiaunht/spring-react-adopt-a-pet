@@ -35,12 +35,12 @@ public class PetRestApiController {
 
   @GetMapping("/{type}")
   public PetType getType(@PathVariable String type) {
-    return petTypeService.findPetTypeBy(type);
+    return petTypeService.findPetTypeBy(type).orElseThrow(() -> new PetTypeNotFoundException());
   }
 
   @GetMapping("/{type}/{id}")
   public AdoptablePet getPetIdOfPetType(@PathVariable String type, @PathVariable Integer id) {
-    PetType petType = petTypeService.findPetTypeBy(type);
+    //PetType petType = petTypeService.findPetTypeBy(type);
     return adoptablePetService.findById(id).orElseThrow(() -> new PetTypeNotFoundException());
   }
 
@@ -58,12 +58,12 @@ public class PetRestApiController {
   private class PetTypeNotFoundException extends RuntimeException {};
 
   @ControllerAdvice
-  private class UrlNotFoundAdvice {
+  private class PetTypeNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(PetTypeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String urlNotFoundHandler(PetTypeNotFoundException ex) {
-      return ex.getMessage();
+    String petNotFoundHandler(PetTypeNotFoundException ex) {
+      return "Can not found what you are looking for";
     }
   }
 

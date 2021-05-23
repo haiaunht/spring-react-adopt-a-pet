@@ -1,5 +1,4 @@
 # Files to ignore when uploading to Launch
 java-spring-express-refactor.md
-./client/public/bundle.js
-node_modules/*
-.DS_store
+src/main/frontend/node_modules
+target

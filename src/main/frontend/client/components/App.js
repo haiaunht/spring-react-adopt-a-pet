@@ -3,7 +3,6 @@ import { hot } from "react-hot-loader/root"
 import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
 import "regenerator-runtime/runtime"
 import "../public/style.css"
-
 import TypeList from "./TypeList.js"
 import AnimalList from "./AnimalList.js"
 import AnimalShow from "./AnimalShow.js"
@@ -12,6 +11,7 @@ import NavBar from "./NavBar.js"
 import PendingApplications from "./PendingApplications.js";
 import Admin from "./Admin.js";
 import AdminReviewSurrenderForm from "./AdminReviewSurrenderForm";
+import PageNotFound from "./PageNotFound";
 
 const App = props => {
   return (
@@ -30,7 +30,7 @@ const App = props => {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/admin/surrender-review" component={AdminReviewSurrenderForm} />
             <Route exact path="/pending_applications" component={PendingApplications} />
-
+            <Route exact path="/404" component={PageNotFound} />
           </Switch>
         </div>
       </div>

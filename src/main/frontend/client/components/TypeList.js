@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import TypeTile from "./TypeTile.js"
+import {Redirect} from "react-router-dom";
 
 const TypeList = props => {
   const [pets, setPets] = useState([])

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import AdoptionForm from "./AdoptionForm.js"
 import SuccessTile from "./SuccessTile.js"
+import {Redirect} from "react-router-dom";
 
 const AnimalShow = props => {
   const [animal, setAnimal] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [afterSubmission, setAfterSubmission] = useState(false)
+  const [status, setStatus] = useState(null)
 
   const getAnimal = async () => {
     try {
@@ -15,10 +17,12 @@ const AnimalShow = props => {
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
+        if (response.status === 404) {
+          setStatus("not found")
+        }
         throw error
       }
       const responseBody = await response.json()
-      // setAnimal(responseBody.pet)
       setAnimal(responseBody)
     } catch (err) {
       console.error(`Error in Fetch: ${err.message}`)
@@ -28,6 +32,10 @@ const AnimalShow = props => {
   useEffect(() => {
     getAnimal()
   }, [])
+
+  if (status) {
+   return <Redirect to={"/404"} />
+  }
 
   let vaccinated
   if (animal.vaccinationStatus) {

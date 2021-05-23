@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react"
 import AnimalTile from "./AnimalTile.js"
+import {Redirect} from "react-router-dom";
 
 const AnimalList = props => {
   const [animalType, setAnimalType] = useState([])
   const [type, setType] = useState("")
+  const [notFound, setNotFound] = useState(null)
 
   const fetchAnimalType = async () => {
     try {
       const type = props.match.params.type
       const response = await fetch(`/api/v1/pets/${type}`)
       if (!response.ok) {
+        setNotFound(true)
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
+        if (response.status === 404) {
+          setNotFound("not found")
+        }
         throw error
       }
       const fetchedData = await response.json()
@@ -25,6 +31,10 @@ const AnimalList = props => {
   useEffect(() => {
     fetchAnimalType()
   }, [props])
+
+  if (notFound) {
+    return <Redirect to={"/404"} />
+  }
 
   const petList = animalType.map(animal => {
     if (animal.adoptionStatus === "null" || animal.adoptionStatus === "denied") {

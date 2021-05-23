@@ -67,9 +67,9 @@ const EditSurrenderForm = props => {
     return (
       <div>
         <h2>Please edit you form: </h2>
-        <div id="surrender-form">
-          <div className="surrender-form-container">
-            <form onSubmit={handleSubmit} className="surrender-form-box">
+        <div >
+          <div className="edit-surrender-form">
+            <form onSubmit={handleSubmit} className="edit-surrender-form">
               <div className="cell">
                 <Error errors={errors}/>
               </div>

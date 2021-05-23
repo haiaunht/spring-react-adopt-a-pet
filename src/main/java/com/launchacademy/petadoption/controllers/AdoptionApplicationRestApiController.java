@@ -48,29 +48,4 @@ public class AdoptionApplicationRestApiController {
   public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
     service.delete(adoptionApplication);
   }
-
-//  @GetMapping
-//  public Page<AdoptionApplication> getListOfAdoptionApplications(Pageable pageable) {
-//    return adoptionApplicationRepo.findAll(pageable);
-//  }
-//
-//  @PostMapping
-//  public ResponseEntity create(@Valid @RequestBody AdoptionApplication adoptionApplication, BindingResult bindingResult) {
-//    if(bindingResult.hasErrors()) {
-//      return new ResponseEntity<List>(bindingResult.getAllErrors(), HttpStatus.NOT_ACCEPTABLE);
-//    }
-//    else {
-//      return new ResponseEntity<AdoptionApplication>(adoptionApplicationRepo.save(adoptionApplication), HttpStatus.CREATED);
-//    }
-//  }
-//
-//  @PostMapping("/update/{id}/{status}")
-//  public void update(@PathVariable Integer id, @PathVariable String status) {
-//    service.update(id, status);
-//  }
-//
-//  @PostMapping("/delete/{id}")
-//  public void delete(@RequestBody AdoptionApplication adoptionApplication, @PathVariable Integer id) {
-//    adoptionApplicationRepo.delete(adoptionApplication);
-//  }
 }
